@@ -1,0 +1,9 @@
+[core]
+	excludesfile = ~/.gitignore
+[user]
+	email = MATSUKI.Hidenori@gmail.com
+	name = MATSUKI.Hidenori
+[color]
+	ui = auto
+[push]
+	default = simple
