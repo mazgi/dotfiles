@@ -113,3 +113,9 @@ if [ -d ~/Applications/android-platform-tools ]; then
   export PATH="$HOME/Applications/android-platform-tools:$PATH"
 fi
 
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "${HOME}/.gvm/bin/gvm-init.sh" ]] && source "${HOME}/.gvm/bin/gvm-init.sh"
+
+# python env
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"$
+
