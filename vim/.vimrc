@@ -1,3 +1,33 @@
+"=======================
+" Begin Vundle section
+"-----------------------
+set nocompatible  " be Improved
+filetype off      " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+
+"   original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+
+"   vim-scripts repos
+"Bundle 'L9'
+
+"   non github repos
+"Bundle 'git://git.example.com/command.git'
+
+filetype plugin indent on   " required!
+"-----------------------
+" End Vundle section
+"=======================
+
 syntax on
 
 " indent
