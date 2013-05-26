@@ -94,12 +94,12 @@ setopt braceccl
 HISTFILE=$HOME/.zsh-history             # 履歴をファイルに保存する
 HISTSIZE=100000                         # メモリ内の履歴の数
 SAVEHIST=100000                         # 保存される履歴の数
-setopt share_history    # 複数のセッションで履歴を共有
-setopt hist_ignore_all_dups    # 履歴から重複排除
+setopt share_history                    # 複数のセッションで履歴を共有
+setopt hist_ignore_all_dups             # 履歴から重複排除
 setopt extended_history                 # 履歴ファイルに時刻を記録
 function history-all { history -E 1 }   # 全履歴の一覧を出力する
-setopt transient_rprompt		# 最新行以外の右プロンプトを消してくれるらしい
-setopt extended_glob    # ^と~使ってファイルを除外
+setopt transient_rprompt                # 最新行以外の右プロンプトを消してくれるらしい
+setopt extended_glob                    # ^と~使ってファイルを除外
 
 # rbenv
 if [ -d ${HOME}/.rbenv ]; then
