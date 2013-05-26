@@ -119,3 +119,7 @@ fi
 # python env
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 
+# original commands
+[ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
+[ -d ${HOME}/Applications/bin ] && export PATH="${HOME}/Applications/bin:${PATH}"
+
