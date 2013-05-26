@@ -1,0 +1,21 @@
+#!/bin/bash
+
+readonly FILE=.gitignore
+
+case $1 in
+  'xcode')
+      cat <<-EOI >> $FILE
+#--------
+# Xcode Workspace
+*.xcworkspace/*
+!*.xcworkspace/contents.xcworkspacedata
+#--------
+# Xcode Project
+**/*.xcodeproj/*
+!**/*.xcodeproj/project.pbxproj
+!**/*.xcodeproj/default.*
+
+EOI
+    ;;
+esac
+
