@@ -18,6 +18,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 Bundle 'quickrun.vim'
 
+" Syntax highlight
+Bundle 'Markdown'
+
 " Color schemes
 Bundle 'w0ng/vim-hybrid'
 
