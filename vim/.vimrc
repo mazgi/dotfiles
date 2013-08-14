@@ -16,6 +16,10 @@ Bundle 'gmarik/vundle'
 "   original repos on github
 Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
+Bundle 'quickrun.vim'
+
+" Color schemes
+Bundle 'w0ng/vim-hybrid'
 
 "   vim-scripts repos
 "Bundle 'L9'
@@ -45,6 +49,18 @@ set tabstop=2
 set shiftwidth=2
 set backspace=indent,eol,start
 
-augroup vimrc
-autocmd! FileType html setlocal tabstop=2 shiftwidth=2
+colorscheme hybrid
+
+augroup VIMRC
+  autocmd!
+  " 
+  autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+  autocmd InsertEnter * highlight CursorLine ctermbg=0
+  autocmd InsertLeave * highlight CursorLine ctermbg=235
+  " File types
+  autocmd FileType html setlocal tabstop=2 shiftwidth=2
+  " 
+  autocmd QuickFixCmdPost vimgrep cwindow
 augroup END
+
