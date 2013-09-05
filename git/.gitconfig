@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	editor = vim
 [user]
 	email = MATSUKI.Hidenori@gmail.com
 	name = MATSUKI.Hidenori
