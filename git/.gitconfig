@@ -1,10 +1,9 @@
+[include]
+  path = .gitconfig.local
 [core]
-	excludesfile = ~/.gitignore
-	editor = vim
-[user]
-	email = MATSUKI.Hidenori@gmail.com
-	name = MATSUKI.Hidenori
+  excludesfile = ~/.gitignore
+  editor = vim
 [color]
-	ui = auto
+  ui = auto
 [push]
-	default = simple
+  default = simple
