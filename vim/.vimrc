@@ -18,6 +18,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 Bundle 'quickrun.vim'
 
+"   scala
+Bundle 'scala.vim'
+
 " Syntax highlight
 Bundle 'Markdown'
 
