@@ -123,5 +123,8 @@ fi
 [ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
 [ -d ${HOME}/Applications/bin ] && export PATH="${HOME}/Applications/bin:${PATH}"
 
+# scala
+[ -d ${HOME}/Applications/Scala/current/bin ] && export PATH="${HOME}/Applications/Scala/current/bin:${PATH}"
+
 # Play Framework
 [ -d ${HOME}/Applications/Play/current ] && export PATH="${HOME}/Applications/Play/current:${PATH}"
