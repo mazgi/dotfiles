@@ -1,5 +1,13 @@
 if [ -e /etc/profile ] ; then
-	. /etc/profile
+  . /etc/profile
+fi
+
+# fpath
+if [ -d "/usr/local/share/zsh-completions" ]; then
+  fpath=(/usr/local/share/zsh-completions $fpath)
+fi
+if [ -d "${HOME}/.zsh/zsh-completions" ]; then
+  fpath=("${HOME}/.zsh/zsh-completions" $fpath)
 fi
 
 autoload colors
@@ -104,20 +112,19 @@ setopt extended_glob                    # ^と~使ってファイルを除外
 # rbenv
 if [ -d ${HOME}/.rbenv ]; then
   export PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}"
-  fpath=(/usr/local/share/zsh-completions $fpath)
   eval "$(rbenv init -)"
 fi
 
 # Android
-if [ -d ~/Applications/android-platform-tools ]; then
-  export PATH="$HOME/Applications/android-platform-tools:$PATH"
+if [ -d "${HOME}/Applications/android-platform-tools" ]; then
+  export PATH="${HOME}/Applications/android-platform-tools:${PATH}"
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "${HOME}/.gvm/bin/gvm-init.sh" ]] && source "${HOME}/.gvm/bin/gvm-init.sh"
 
 # python env
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+[[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] && source "${HOME}/.pythonbrew/etc/bashrc"
 
 # original commands
 [ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
