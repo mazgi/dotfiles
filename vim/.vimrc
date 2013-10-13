@@ -66,6 +66,7 @@ augroup VIMRC
   autocmd InsertLeave * highlight CursorLine ctermbg=235
   " File types
   autocmd FileType html setlocal tabstop=2 shiftwidth=2
+  autocmd BufRead,BufNewFile *.scala set filetype=scala
   " 
   autocmd QuickFixCmdPost vimgrep cwindow
 augroup END
