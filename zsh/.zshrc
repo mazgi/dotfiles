@@ -135,6 +135,12 @@ if [ -d "${HOME}/Applications/Scala/current" ]; then
   export SCALA_HOME="${HOME}/Applications/Scala/current"
   export PATH="${SCALA_HOME}/bin:${PATH}"
 fi
+if [ -d ${HOME}/Applications/sbt/current/sbt/bin ]; then
+  export PATH="${HOME}/Applications/sbt/current/sbt/bin:${PATH}"
+  #_JAVA_OPTIONS=-Xmx2G JAVA_OPTS=-Xss32M SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
+  export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
+fi
+
 if [ -d ${HOME}/.scalaenv ]; then
   export PATH="${HOME}/.scalaenv/bin:${HOME}/.scalaenv/shims:${PATH}"
   eval "$(scalaenv init -)"
