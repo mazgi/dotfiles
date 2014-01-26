@@ -131,7 +131,14 @@ fi
 [ -d ${HOME}/Applications/bin ] && export PATH="${HOME}/Applications/bin:${PATH}"
 
 # scala
-[ -d ${HOME}/Applications/Scala/current/bin ] && export PATH="${HOME}/Applications/Scala/current/bin:${PATH}"
+if [ -d "${HOME}/Applications/Scala/current" ]; then
+  export SCALA_HOME="${HOME}/Applications/Scala/current"
+  export PATH="${SCALA_HOME}/bin:${PATH}"
+fi
+if [ -d ${HOME}/.scalaenv ]; then
+  export PATH="${HOME}/.scalaenv/bin:${HOME}/.scalaenv/shims:${PATH}"
+  eval "$(scalaenv init -)"
+fi
 
 # Play Framework
 [ -d ${HOME}/Applications/Play/current ] && export PATH="${HOME}/Applications/Play/current:${PATH}"

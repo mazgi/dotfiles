@@ -18,11 +18,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 Bundle 'quickrun.vim'
 
-"   scala
-Bundle 'scala.vim'
-
 " Syntax highlight
 Bundle 'Markdown'
+
+Bundle 'AutoComplPop'
+
+"   scala
+Bundle 'scala.vim'
 
 " Color schemes
 Bundle 'w0ng/vim-hybrid'
@@ -65,8 +67,9 @@ augroup VIMRC
   autocmd InsertEnter * highlight CursorLine ctermbg=0
   autocmd InsertLeave * highlight CursorLine ctermbg=235
   " File types
-  autocmd FileType html setlocal tabstop=2 shiftwidth=2
-  autocmd BufRead,BufNewFile *.scala set filetype=scala
+  "autocmd BufRead,BufNewFile *.scala set filetype=scala
+
+  autocmd FileType fstab setlocal noexpandtab shiftwidth=4 softtabstop=4
   " 
   autocmd QuickFixCmdPost vimgrep cwindow
 augroup END
