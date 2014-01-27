@@ -26,6 +26,10 @@ Bundle 'AutoComplPop'
 "   scala
 Bundle 'scala.vim'
 
+"   JavaScript
+Bundle 'pangloss/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
+
 " Color schemes
 Bundle 'w0ng/vim-hybrid'
 
