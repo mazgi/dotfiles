@@ -145,6 +145,14 @@ if [ -d ${HOME}/.scalaenv ]; then
   export PATH="${HOME}/.scalaenv/bin:${HOME}/.scalaenv/shims:${PATH}"
   eval "$(scalaenv init -)"
 fi
+if [ -d ${HOME}/.sbtenv ]; then
+  export PATH="${HOME}/.sbtenv/bin:${HOME}/.sbtenv/shims:${PATH}"
+  eval "$(sbtenv init -)"
+fi
+if [ -d ${HOME}/.playenv ]; then
+  export PATH="${HOME}/.playenv/bin:${HOME}/.playenv/shims:${PATH}"
+  eval "$(playenv init -)"
+fi
 
 # Play Framework
 [ -d ${HOME}/Applications/Play/current ] && export PATH="${HOME}/Applications/Play/current:${PATH}"
