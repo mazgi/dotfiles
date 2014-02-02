@@ -140,6 +140,10 @@ if [ -d ${HOME}/Applications/sbt/current/sbt/bin ]; then
   #_JAVA_OPTIONS=-Xmx2G JAVA_OPTS=-Xss32M SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
   export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
 fi
+if [ -d "${HOME}/.svm/current" ]; then
+  export SCALA_HOME="${HOME}/.svm/current/rt"
+  export PATH="${SCALA_HOME}/.svm/current/rt/bin:${PATH}"
+fi
 
 if [ -d ${HOME}/.scalaenv ]; then
   export PATH="${HOME}/.scalaenv/bin:${HOME}/.scalaenv/shims:${PATH}"
