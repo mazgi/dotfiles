@@ -130,16 +130,7 @@ fi
 [ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
 [ -d ${HOME}/Applications/bin ] && export PATH="${HOME}/Applications/bin:${PATH}"
 
-# scala
-if [ -d "${HOME}/Applications/Scala/current" ]; then
-  export SCALA_HOME="${HOME}/Applications/Scala/current"
-  export PATH="${SCALA_HOME}/bin:${PATH}"
-fi
-if [ -d ${HOME}/Applications/sbt/current/sbt/bin ]; then
-  export PATH="${HOME}/Applications/sbt/current/sbt/bin:${PATH}"
-  #_JAVA_OPTIONS=-Xmx2G JAVA_OPTS=-Xss32M SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
-  export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
-fi
+# Scala, sbt, PlayFramework
 if [ -d "${HOME}/.svm/current" ]; then
   export SCALA_HOME="${HOME}/.svm/current/rt"
   export PATH="${SCALA_HOME}/.svm/current/rt/bin:${PATH}"
@@ -152,11 +143,10 @@ fi
 if [ -d ${HOME}/.sbtenv ]; then
   export PATH="${HOME}/.sbtenv/bin:${HOME}/.sbtenv/shims:${PATH}"
   eval "$(sbtenv init -)"
+  export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
 fi
 if [ -d ${HOME}/.playenv ]; then
   export PATH="${HOME}/.playenv/bin:${HOME}/.playenv/shims:${PATH}"
   eval "$(playenv init -)"
 fi
 
-# Play Framework
-[ -d ${HOME}/Applications/Play/current ] && export PATH="${HOME}/Applications/Play/current:${PATH}"
