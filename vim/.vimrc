@@ -74,7 +74,7 @@ augroup VIMRC
   "autocmd BufRead,BufNewFile *.scala set filetype=scala
 
   autocmd FileType fstab setlocal noexpandtab shiftwidth=4 softtabstop=4
-  autocmd FileType limits setlocal noexpandtab shiftwidth=4 softtabstop=4
+  autocmd FileType limits setlocal expandtab shiftwidth=4 softtabstop=4
   " 
   autocmd QuickFixCmdPost vimgrep cwindow
 augroup END
