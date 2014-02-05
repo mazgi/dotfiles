@@ -75,6 +75,7 @@ augroup VIMRC
 
   autocmd FileType fstab setlocal noexpandtab shiftwidth=4 softtabstop=4
   autocmd FileType limits setlocal expandtab shiftwidth=4 softtabstop=4
+  autocmd FileType pam setlocal expandtab shiftwidth=4 softtabstop=4
   " 
   autocmd QuickFixCmdPost vimgrep cwindow
 augroup END
