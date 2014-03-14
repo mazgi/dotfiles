@@ -144,9 +144,11 @@ if [ -d ${HOME}/.sbtenv ]; then
   export PATH="${HOME}/.sbtenv/bin:${HOME}/.sbtenv/shims:${PATH}"
   eval "$(sbtenv init -)"
   export SBT_OPTS="-Xms2G -Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -XX:PermSize=2G -Xss128M"
+  export JAVA_OPTS="-Xss128M"
 fi
 if [ -d ${HOME}/.playenv ]; then
   export PATH="${HOME}/.playenv/bin:${HOME}/.playenv/shims:${PATH}"
   eval "$(playenv init -)"
+  export PLAY_OPTS="-XX:PermSize=2G -XX:MaxPermSize=2G -Xms2G -Xmx2G -Xss128M"
 fi
 
