@@ -74,7 +74,7 @@ if 1
     " File types
     "autocmd BufRead,BufNewFile *.scala set filetype=scala
 
-    autocmd FileType fstab setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+    "autocmd FileType fstab setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
     autocmd FileType limits setlocal expandtab shiftwidth=4 softtabstop=4
     autocmd FileType pam setlocal noexpandtab shiftwidth=4 softtabstop=4
     " 
