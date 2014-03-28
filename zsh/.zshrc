@@ -22,6 +22,12 @@ case ${UID} in
   ;;
 esac
 
+HOST_COLOR=""
+for c in $(hostname -s | awk '{len=split($0,str,""); for(i=1; i<=len; i++){print str[i]}}')
+do
+  HOST_COLOR="${HOST_COLOR}$(printf "%%F{%03d}%c%%f" "'${c}" "${c}")"
+done;
+
 # VCS
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '(%s)-[%b]'
@@ -32,7 +38,8 @@ precmd () {
         [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
-PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}@%m] %(!.#.$) "
+
+PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}@${HOST_COLOR}] %(!.#.$) "
 PROMPT2="%{${fg[blue]}%}%_> %{${reset_color}%}"
 SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 RPROMPT="%1(v|%F{green}%1v%f|) %{${fg[blue]}%}[%~]%{${reset_color}%}"
@@ -143,12 +150,10 @@ fi
 if [ -d ${HOME}/.sbtenv ]; then
   export PATH="${HOME}/.sbtenv/bin:${HOME}/.sbtenv/shims:${PATH}"
   eval "$(sbtenv init -)"
-  export SBT_OPTS="-Xms2G -Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -XX:PermSize=2G -Xss128M"
-  export JAVA_OPTS="-Xss128M"
+  export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
 fi
 if [ -d ${HOME}/.playenv ]; then
   export PATH="${HOME}/.playenv/bin:${HOME}/.playenv/shims:${PATH}"
   eval "$(playenv init -)"
-  export PLAY_OPTS="-XX:PermSize=2G -XX:MaxPermSize=2G -Xms2G -Xmx2G -Xss128M"
 fi
 
