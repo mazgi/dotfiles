@@ -22,11 +22,14 @@ case ${UID} in
   ;;
 esac
 
-HOST_COLOR=""
-for c in $(hostname -s | awk '{len=split($0,str,""); for(i=1; i<=len; i++){print str[i]}}')
+HOST_COLOR=0
+I=0
+for c in $(hostname | awk '{len=split($0,str,""); for(i=1; i<=len; i++){print str[i]}}')
 do
-  HOST_COLOR="${HOST_COLOR}$(printf "%%F{%03d}%c%%f" "'${c}" "${c}")"
+  HOST_COLOR=$((${HOST_COLOR} + $(printf "%d" "'${c}")))
+  I=$((${I} + 1))
 done;
+HOST_COLOR="$(printf "%%F{%03d}@%%f" "$((${HOST_COLOR} / ${I}))")"
 
 # VCS
 autoload -Uz vcs_info
@@ -39,7 +42,7 @@ precmd () {
 }
 
 
-PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}@${HOST_COLOR}] %(!.#.$) "
+PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}%{${bg[black]}%}${HOST_COLOR}%{$reset_color%}%m] %(!.#.$) "
 PROMPT2="%{${fg[blue]}%}%_> %{${reset_color}%}"
 SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 RPROMPT="%1(v|%F{green}%1v%f|) %{${fg[blue]}%}[%~]%{${reset_color}%}"
