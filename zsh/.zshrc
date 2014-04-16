@@ -140,6 +140,12 @@ fi
 [ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
 [ -d ${HOME}/Applications/bin ] && export PATH="${HOME}/Applications/bin:${PATH}"
 
+# JVM on Mac OSX
+if [ -e "/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home" ]; then
+  export JAVA_HOME=$(/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7")
+  PATH=${JAVA_HOME}/bin:${PATH}
+fi
+
 # Scala, sbt, PlayFramework
 if [ -d "${HOME}/.svm/current" ]; then
   export SCALA_HOME="${HOME}/.svm/current/rt"
