@@ -68,6 +68,7 @@ bindkey -e      # emacsっぽい
 
 alias -g G='| grep '
 alias -g M='| more '
+alias tmux='tmux -u'
 
 if [ 'Darwin' = $(uname -s) ]; then
   alias ls='ls -FG'   # Mac
