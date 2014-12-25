@@ -5,6 +5,10 @@ if 1
   set nocompatible  " be Improved
   filetype off      " required!
 
+  if $GOROOT != ''
+    set rtp+=$GOROOT/misc/vim
+  endif
+
   set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 
