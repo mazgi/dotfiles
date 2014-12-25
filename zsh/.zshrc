@@ -152,6 +152,7 @@ if [ -e "/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_ho
 fi
 
 # Scala, sbt, PlayFramework
+[ -d ${HOME}/Applications/activator/current ] && export PATH="${HOME}/Applications/activator/current:${PATH}"
 if [ -d "${HOME}/.svm/current" ]; then
   export SCALA_HOME="${HOME}/.svm/current/rt"
   export PATH="${SCALA_HOME}/.svm/current/rt/bin:${PATH}"
@@ -205,3 +206,9 @@ if [ "Linux" = $(uname) ]; then
     echo 'Use `ip r`'
   }
 fi
+
+# Heroku
+if [ -d /usr/local/heroku/bin/ ]; then
+  export PATH="/usr/local/heroku/bin:$PATH"
+fi
+
