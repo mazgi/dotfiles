@@ -46,7 +46,7 @@ precmd () {
 }
 
 
-PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}%{${bg[black]}%}${HOST_COLOR}%{$reset_color%}%m] %(!.#.$) "
+PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}${HOST_COLOR}%{$reset_color%}%m] %(!.#.$) "
 PROMPT2="%{${fg[blue]}%}%_> %{${reset_color}%}"
 SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
 RPROMPT="%1(v|%F{green}%1v%f|) %{${fg[blue]}%}[%~]%{${reset_color}%}"
