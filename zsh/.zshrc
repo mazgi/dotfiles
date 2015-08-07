@@ -17,7 +17,7 @@ fi
 autoload colors
 colors
 
-UID_COLOR=${fg[green]}
+UID_COLOR=${fg[blue]}
 case ${UID} in
 0)
   UID_COLOR=${fg[red]}
