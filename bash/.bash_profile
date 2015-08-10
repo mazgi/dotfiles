@@ -1,4 +1,5 @@
 alias tmux='tmux -u'
+alias ll='ls -l'
 
 # bash-completion on homebrew
 type brew 2> /dev/null && if [ -f `brew --prefix`/etc/bash_completion ]; then
