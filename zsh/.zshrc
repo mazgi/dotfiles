@@ -138,8 +138,22 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 [[ -s "${HOME}/.gvm/bin/gvm-init.sh" ]] && source "${HOME}/.gvm/bin/gvm-init.sh"
 
-# python env
-[[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] && source "${HOME}/.pythonbrew/etc/bashrc"
+# pyenv
+if [ -d "${HOME}/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  if [ -d "${PYENV_ROOT}/bin" ]; then
+    export PATH="$PYENV_ROOT/bin:$PATH"
+  fi
+fi
+
+# Python pip
+export PIP_RESPECT_VIRTUALENV=true
+if [ -d ${HOME}/.local/lib64 ]; then
+  export PYTHONPATH="${HOME}/.local/lib64/python2.7/site-packages:${PYTHONPATH}"
+fi
+if [ -d ${HOME}/.local/bin ]; then
+  export PATH="${HOME}/.local/bin:${PATH}"
+fi
 
 # original commands
 [ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
@@ -170,15 +184,6 @@ fi
 if [ -d ${HOME}/.playenv ]; then
   export PATH="${HOME}/.playenv/bin:${HOME}/.playenv/shims:${PATH}"
   eval "$(playenv init -)"
-fi
-
-# Python pip
-export PIP_RESPECT_VIRTUALENV=true
-if [ -d ${HOME}/.local/lib64 ]; then
-  export PYTHONPATH="${HOME}/.local/lib64/python2.7/site-packages:${PYTHONPATH}"
-fi
-if [ -d ${HOME}/.local/bin ]; then
-  export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
 if [ "Linux" = $(uname) ]; then
