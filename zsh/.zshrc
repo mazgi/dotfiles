@@ -172,6 +172,15 @@ if [ -d ${HOME}/.playenv ]; then
   eval "$(playenv init -)"
 fi
 
+# Python pip
+export PIP_RESPECT_VIRTUALENV=true
+if [ -d ${HOME}/.local/lib64 ]; then
+  export PYTHONPATH="${HOME}/.local/lib64/python2.7/site-packages:${PYTHONPATH}"
+fi
+if [ -d ${HOME}/.local/bin ]; then
+  export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
 if [ "Linux" = $(uname) ]; then
   net_tools_deprecated_message () {
     echo -n 'net-tools コマンドはもう非推奨ですよ？おじさんなんじゃないですか？ '
