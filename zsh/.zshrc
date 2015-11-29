@@ -45,7 +45,6 @@ precmd () {
         [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
-
 PROMPT="[%{$UID_COLOR%}%n%{${reset_color}%}${HOST_COLOR}%{$reset_color%}%m] %(!.#.$) "
 PROMPT2="%{${fg[blue]}%}%_> %{${reset_color}%}"
 SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
@@ -178,7 +177,7 @@ fi
 if [ -d ${HOME}/.sbtenv ]; then
   export PATH="${HOME}/.sbtenv/bin:${HOME}/.sbtenv/shims:${PATH}"
   eval "$(sbtenv init -)"
-  export SBT_OPTS="-Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M"
+  export SBT_OPTS="-Xmx1G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=1G -Xss1M"
 fi
 if [ -d ${HOME}/.playenv ]; then
   export PATH="${HOME}/.playenv/bin:${HOME}/.playenv/shims:${PATH}"
@@ -198,6 +197,7 @@ if [ "Linux" = $(uname) ]; then
     net_tools_deprecated_message
     echo 'Use `ip a`, `ip link`, `ip -s`'
   }
+
   iptunnel () {
     net_tools_deprecated_message
     echo 'Use `ip tunnel`'
