@@ -225,3 +225,7 @@ if [ -d /usr/local/heroku/bin/ ]; then
   export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
+# Google App Engine
+if [ -d ${HOME}/Applications/go_appengine ]; then
+  export PATH=$PATH:${HOME}/Applications/go_appengine
+fi
