@@ -10,6 +10,9 @@ fi
 if [ -d "/usr/local/share/zsh-completions" ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 fi
+if [ -d "/usr/local/share/zsh/site-functions" ]; then
+  fpath=(/usr/local/share/zsh/site-functions $fpath)
+fi
 if [ -d "${HOME}/.zsh/zsh-completions" ]; then
   fpath=("${HOME}/.zsh/zsh-completions" $fpath)
 fi
