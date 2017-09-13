@@ -18,7 +18,7 @@ First, go to your home directory.
 $ cd
 ```
 
-*Use `zsh`* with `~/.zshrc`.
+**Use `zsh`** with `~/.zshrc`.
 
 ```shellsession
 $ ln -s .dotfiles/zsh/.zshrc .
@@ -27,7 +27,7 @@ Changing shell for YOUR_NAME.
 Password for YOUR_NAME: 
 ```
 
-*Use `vim`* with `~/.vimrc` and `~/.vim` directory.
+**Use `vim`** with `~/.vimrc` and `~/.vim` directory.
 
 ```shellsession
 $ ln -s .dotfiles/vim/.vim .
