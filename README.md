@@ -30,7 +30,7 @@ Password for YOUR_NAME:
 **Use `vim`** with `~/.vimrc` and `~/.vim` directory.
 
 ```shellsession
-$ ln -s .dotfiles/vim/.vim .
+$ ln -s .dotfiles/vim/.vim* .
 $ vim
 ```
 
