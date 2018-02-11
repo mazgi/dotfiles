@@ -17,6 +17,7 @@ if 1
   Bundle 'gmarik/vundle'
 
   " My Bundles here:
+  Bundle 'stephpy/vim-yaml'
 
   "   original repos on github
   Bundle 'tpope/vim-fugitive'
@@ -32,6 +33,9 @@ if 1
 
   " Syntax highlight
   Bundle 'Markdown'
+
+  "   Terraform
+  Bundle 'hashivim/vim-terraform'
 
   "   Web
   Bundle 'slim-template/vim-slim'
