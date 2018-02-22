@@ -36,6 +36,7 @@ if 1
 
   "   Terraform
   Bundle 'hashivim/vim-terraform'
+  let g:terraform_fmt_on_save = 1
 
   "   Web
   Bundle 'slim-template/vim-slim'
