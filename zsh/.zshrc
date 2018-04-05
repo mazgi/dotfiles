@@ -132,6 +132,11 @@ if [ -d ${HOME}/.rbenv ]; then
   eval "$(rbenv init -)"
 fi
 
+# tfenv
+if [ -d ${HOME}/.rbenv ]; then
+  export PATH="${HOME}/.tfenv/bin:${PATH}"
+fi
+
 # Android
 if [ -d "${HOME}/Applications/android-platform-tools" ]; then
   export PATH="${HOME}/Applications/android-platform-tools:${PATH}"
@@ -243,3 +248,6 @@ fi
 if [ -f ${HOME}/Applications/google-cloud-sdk/completion.zsh.inc ]; then
   source "${HOME}/Applications/google-cloud-sdk/completion.zsh.inc"
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/hidenori.matsuki/Creations/github.com/mazgi/hello-vault/bin/vault vault
