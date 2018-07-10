@@ -162,6 +162,11 @@ if [ -d ${HOME}/.local/bin ]; then
   export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
+# Go
+if [ -d ${HOME}/go/bin ]; then
+  export PATH="${HOME}/go/bin:${PATH}"
+fi
+
 # original commands
 [ -d ${HOME}/bin ] && export PATH="${HOME}/bin:${PATH}"
 [ -d ${HOME}/Applications/bin ] && export PATH="${HOME}/Applications/bin:${PATH}"
