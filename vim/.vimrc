@@ -64,6 +64,10 @@ if 1
 
   syntax on
 
+  " modeline
+  set modeline
+  set modelines=3
+
   " indent
   set autoindent
   set cindent
