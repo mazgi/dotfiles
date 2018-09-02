@@ -97,6 +97,7 @@ if 1
     autocmd WinLeave * setlocal nocursorline
     autocmd InsertEnter * highlight CursorLine ctermbg=0
     autocmd InsertLeave * highlight CursorLine ctermbg=235
+    autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
     " File types
     "autocmd BufRead,BufNewFile *.scala set filetype=scala
 
