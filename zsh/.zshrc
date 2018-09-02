@@ -2,16 +2,13 @@
 # see:
 # - http://zsh.sourceforge.net/Doc/Release/Options.html
 # - https://github.com/zplug/zplug
-
 # zprof {{{
 if [[ ! -z $RUN_ZPROF ]]; then
   zmodload zsh/zprof
 fi
 # }}}
-
 export EDITOR=vim
 export FZF_DEFAULT_OPTS='--select-1 --exit-0 --layout=reverse'
-
 # plugins with zplug  {{{
 source ~/.zplug/init.zsh
 
@@ -29,7 +26,6 @@ if ! zplug check --verbose; then
 fi
 zplug load
 # }}}
-
 # laod profiles {{{
 if [[ -e /etc/profile ]] ; then
   . /etc/profile
@@ -38,7 +34,6 @@ if [[ -e ~/.zshrc.local ]] ; then
   . ~/.zshrc.local
 fi
 # }}}
-
 # history settings {{{
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=999999
@@ -48,12 +43,13 @@ setopt hist_ignore_all_dups
 setopt extended_history
 setopt hist_reduce_blanks
 # }}}
-
-WORDCHARS='*'
-
+# bindkeys {{{
 bindkey -e
 bindkey "^[u" undo
 bindkey "^[r" redo
+# }}}
+# setops for directory/file operations {{{
+WORDCHARS='*'
 
 # correct: sl -> ls [nyae]?
 setopt correct
@@ -69,17 +65,19 @@ setopt extended_glob
 # 2 -- ~/.dotfiles/a
 setopt auto_pushd
 setopt pushd_ignore_dups
-
+# }}}
+# smart-insert-last-word {{{
 autoload -Uz smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
 #zstyle :insert-last-word match '([:alpha:]){2,}'
 bindkey '^]' insert-last-word
-
+# }}}
+# url-quote-magic {{{
 autoload -Uz url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
 zstyle :bracketed-paste-magic paste-init backward-extend-paste
-
+# }}}
 # aliases {{{
 if [ 'Darwin' = $(uname -s) ]; then
   alias ls='ls -FG'
@@ -92,7 +90,7 @@ alias -g G='| grep '
 alias -g M='| more '
 alias -g V='| vim -R -'
 # }}}
-
+# custom functions {{{
 function mkdir-cd() {
   mkdir -p $1 && cd $1
 }
@@ -109,6 +107,12 @@ function switch-branch() {
   fi
 }
 
+function render-xterm-256colors() {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+# }}}
 # zprof {{{
 if [[ ! -z $RUN_ZPROF ]]; then
   if type zprof > /dev/null 2>&1; then
