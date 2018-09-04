@@ -16,7 +16,7 @@ zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug "supercrabtree/k"
-zplug 'mazgi/zsh-themes', as:theme, use:workstation-simple.zsh-theme
+zplug 'mazgi/zsh-themes', as:theme, use:workstation-heavy.zsh-theme
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
