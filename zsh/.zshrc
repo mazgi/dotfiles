@@ -113,6 +113,13 @@ function render-xterm-256colors() {
   done
 }
 # }}}
+# set paths {{{
+# gcloud
+if [[ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]]; then
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+fi
+# }}}
 # zprof {{{
 if [[ ! -z $RUN_ZPROF ]]; then
   if type zprof > /dev/null 2>&1; then
