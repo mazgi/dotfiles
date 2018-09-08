@@ -4,6 +4,12 @@ readonly USER_BIN_DIR="${HOME}/bin"
 readonly LOCAL_TMPDIR="${TMPDIR}/$0"
 readonly PACKER_VERSION='1.2.5'
 
+if [[ 'Darwin' == $(uname -s) ]]; then
+  if [[ ! $(which brew) ]]; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+fi
+
 if [[ ! -d ~/.zplug ]] ; then
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
