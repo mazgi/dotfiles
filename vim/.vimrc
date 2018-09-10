@@ -34,19 +34,22 @@ if 1
   " Syntax highlight
   Bundle 'Markdown'
 
-  "   Terraform
+  " Terraform
   Bundle 'hashivim/vim-terraform'
   let g:terraform_fmt_on_save = 1
 
-  "   Web
+  " Middlewares
+  Bundle 'chr4/nginx.vim'
+
+  " Web
   Bundle 'slim-template/vim-slim'
 
-  "   scala
-  Bundle 'scala.vim'
-
-  "   JavaScript
+  " JavaScript
   Bundle 'pangloss/vim-javascript'
   Bundle 'jelera/vim-javascript-syntax'
+
+  " Scala
+  Bundle 'scala.vim'
 
   " Color schemes
   Bundle 'w0ng/vim-hybrid'
