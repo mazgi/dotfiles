@@ -8,6 +8,10 @@ readonly USER_BIN_DIR="${HOME}/bin"
 readonly PACKER_VERSION='1.2.5'
 
 # --------------------------------
+# Setup preferences
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -int 1
+
+# --------------------------------
 # Clone this repository
 if [[ -d ~/.dotfiles ]] ; then
   (cd ${USER_DOTFILES_DIR} && git pull --ff-only origin master && git submodule update --init --recursive)
