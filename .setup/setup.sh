@@ -1,21 +1,44 @@
 #!/bin/bash -eu
 
-readonly USER_BIN_DIR="${HOME}/bin"
 readonly LOCAL_TMPDIR="${TMPDIR}/$0"
+readonly DOTFILES_GIT_URL='git@github.com:mazgi/.dotfiles.git'
+readonly USER_DOTFILES_DIR="${HOME}/.dotfiles"
+readonly USER_BIN_DIR="${HOME}/bin"
+
 readonly PACKER_VERSION='1.2.5'
 
+# --------------------------------
+# Clone this repository
+if [[ -d ~/.dotfiles ]] ; then
+  (cd ${USER_DOTFILES_DIR} && git pull --ff-only origin master && git submodule update --init --recursive)
+else
+  git clone --recurse-submodules ${DOTFILES_GIT_URL} ${USER_DOTFILES_DIR}
+fi
+
+# --------------------------------
+# Setup macOS preferences
+if [[ 'Darwin' == $(uname -s) ]]; then
+  source ${USER_DOTFILES_DIR}/.setup/setup.macOS.sh
+  __setup_macos_preferences
+fi
+
+# --------------------------------
+# Install Homebrew and packages
 if [[ 'Darwin' == $(uname -s) ]]; then
   if [[ ! $(which brew) ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 fi
+(cd ${USER_DOTFILES_DIR} && brew bundle)
 
+# --------------------------------
+# Setup zsh
 if [[ ! -d ~/.zplug ]] ; then
   curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
 # --------------------------------
-# Download tools
+# Download other tools
 mkdir -p ${USER_BIN_DIR}
 mkdir -p ${LOCAL_TMPDIR}
 
