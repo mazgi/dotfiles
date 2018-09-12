@@ -1,4 +1,11 @@
+
 ## How to use
+
+```shellsession
+curl -L --proto-redir -all,https 'https://raw.githubusercontent.com/mazgi/.dotfiles/master/setup.sh' | bash
+```
+
+## How to develop
 
 1. Fork this repository.
 
