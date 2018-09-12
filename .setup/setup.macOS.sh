@@ -5,6 +5,23 @@ function __setup_macos_preferences() {
   # --------------------------------
   # Terminal.app
   defaults write com.apple.terminal 'Default Window Settings' -string 'Pro'
+  #/usr/libexec/PlistBuddy -c 'Set "Window Settings":Pro:Bell false' ~/Library/Preferences/com.apple.Terminal.plist
+  #/usr/libexec/PlistBuddy -c 'Set "Window Settings":Pro:VisualBellOnlyWhenMuted false' ~/Library/Preferences/com.apple.Terminal.plist
+  /usr/libexec/PlistBuddy -c 'Set "Window Settings":Pro:shellExitAction 1' ~/Library/Preferences/com.apple.Terminal.plist
+
+  # --------------------------------
+  # Finder & File
+  # Avoid creating `.DS_Store` file on network strages.
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+  # --------------------------------
+  # Language & Region
+  # Set first day of week to Monday
+  defaults write NSGlobalDomain AppleFirstWeekday -dict 'gregorian' 2
+  defaults write NSGlobalDomain AppleLanguages -array 'en-JP' 'jp-JP'
+  defaults write NSGlobalDomain AppleLocale -string 'en_JP'
+  #defaults write NSGlobalDomain AppleMeasurementUnits -string 'Centimeters'
+  #defaults write NSGlobalDomain AppleTemperatureUnit -string 'Celsius'
 
   # Trackpad
   # Enable clicking
@@ -14,18 +31,29 @@ function __setup_macos_preferences() {
   defaults write com.apple.dock mru-spaces -bool false
 
   # Hotcorners
+  # Possible values:
+  #  0: no-op
+  #  2: Mission Control (all windows)
+  #  3: Show application windows
+  #  4: Desktop
+  #  5: Start screen saver
+  #  6: Disable screen saver
+  #  7: Dashboard
+  # 10: Put display to sleep
+  # 11: Launchpad
+  # 12: Notification Center
   # Top-Left
   defaults write com.apple.dock wvous-tl-corner -int 6
-  defaults write com.apple.dock wvous-tl-modifier -int 0
   # Top-Right
   defaults write com.apple.dock wvous-tr-corner -int 6
-  defaults write com.apple.dock wvous-tr-modifier -int 0
   # Bottom-Left
   defaults write com.apple.dock wvous-bl-corner -int 5
-  defaults write com.apple.dock wvous-bl-modifier -int 0
   # Bottom-Right
   defaults write com.apple.dock wvous-br-corner -int 5
-  defaults write com.apple.dock wvous-br-modifier -int 0
+
+  # Menu Bar
+  defaults write com.apple.menuextra.clock 'DateFormat' 'EEE MMM d  H:mm'
+  defaults write com.apple.menuextra.battery 'ShowPercent' 'NO'
 
   # Dock
   # Disable automatically hide
@@ -36,5 +64,6 @@ function __setup_macos_preferences() {
   defaults write com.apple.dock tilesize -int 16
   # Enable magnification
   defaults write com.apple.dock magnification -bool true
+  # Apply changes
   killall Dock
 }
