@@ -4,10 +4,13 @@
 function __setup_macos_preferences() {
   # --------------------------------
   # Terminal.app
-  defaults write com.apple.terminal 'Default Window Settings' -string 'Pro'
-  #/usr/libexec/PlistBuddy -c 'Set "Window Settings":Pro:Bell false' ~/Library/Preferences/com.apple.Terminal.plist
-  #/usr/libexec/PlistBuddy -c 'Set "Window Settings":Pro:VisualBellOnlyWhenMuted false' ~/Library/Preferences/com.apple.Terminal.plist
-  /usr/libexec/PlistBuddy -c 'Set "Window Settings":Pro:shellExitAction 1' ~/Library/Preferences/com.apple.Terminal.plist
+  /usr/libexec/PlistBuddy -c 'Set "Startup Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist
+  /usr/libexec/PlistBuddy -c 'Set "Default Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist
+  #/usr/libexec/PlistBuddy -c 'Add "Window Settings:Pro:Bell" bool false' ~/Library/Preferences/com.apple.Terminal.plist
+  #/usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:Bell" false' ~/Library/Preferences/com.apple.Terminal.plist
+  #/usr/libexec/PlistBuddy -c 'Add "Window Settings:Pro:VisualBellOnlyWhenMuted" bool false' ~/Library/Preferences/com.apple.Terminal.plist
+  #/usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:VisualBellOnlyWhenMuted" false' ~/Library/Preferences/com.apple.Terminal.plist
+  /usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:shellExitAction" 1' ~/Library/Preferences/com.apple.Terminal.plist
 
   # --------------------------------
   # Finder & File
