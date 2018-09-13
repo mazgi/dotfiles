@@ -7,16 +7,32 @@ readonly USER_BIN_DIR="${HOME}/bin"
 
 readonly PACKER_VERSION='1.2.5'
 
+## --------------------------------
+## ToDo: Check: exist ssh private key
+#if [[ ! -d ~/.ssh ]] || [[ -z $(ls -A ~/.ssh/) ]]; then
+#  # ToDo: prompt
+#  ssh-keygen
+#fi
+
+# --------------------------------
+# ToDo: check icloud sign in
+
 # --------------------------------
 # Clean up function
 function cleanup() {
   local ret=$?
   trap EXIT HUP INT QUIT TERM
 
+  printf "Clean up ...\n"
+
   # Remove TMPDIR
   rm -rf ${LOCAL_TMPDIR}
-  # Reset sudo password timeout
+
+  printf "Set up complete! please restart your computer.\n"
+  # Reset sudo password timeout ( && reboot )
   sudo rm -f /etc/sudoers.d/disable_timestamp_timeout
+  # ToDo: show prompt
+  #sudo 'rm -f /etc/sudoers.d/disable_timestamp_timeout; shutdown -r now'
 
   exit $ret
 }
@@ -28,7 +44,7 @@ sudo sh -c "echo 'Defaults timestamp_timeout=-1' > /etc/sudoers.d/disable_timest
 
 # --------------------------------
 # Clone this repository
-if [[ -d ~/.dotfiles ]] ; then
+if [[ -d ${USER_DOTFILES_DIR} ]] ; then
   (cd ${USER_DOTFILES_DIR} && git pull --ff-only origin master && git submodule update --init --recursive)
 else
   git clone --recurse-submodules ${DOTFILES_GIT_URL} ${USER_DOTFILES_DIR}
@@ -37,7 +53,7 @@ fi
 # --------------------------------
 # Setup macOS preferences
 if [[ 'Darwin' == $(uname -s) ]]; then
-  source ${USER_DOTFILES_DIR}/.setup/setup.macOS.sh
+  source ${USER_DOTFILES_DIR}/.setup/lib/setup.macOS.sh
   __setup_macos_preferences
 fi
 
