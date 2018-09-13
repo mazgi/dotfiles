@@ -8,6 +8,25 @@ readonly USER_BIN_DIR="${HOME}/bin"
 readonly PACKER_VERSION='1.2.5'
 
 # --------------------------------
+# Clean up function
+function cleanup() {
+  local ret=$?
+  trap EXIT HUP INT QUIT TERM
+
+  # Remove TMPDIR
+  rm -rf ${LOCAL_TMPDIR}
+  # Reset sudo password timeout
+  sudo rm -f /etc/sudoers.d/disable_timestamp_timeout
+
+  exit $ret
+}
+trap cleanup EXIT HUP INT QUIT TERM
+
+# --------------------------------
+# Makes the sudo password not expire
+sudo sh -c "echo 'Defaults timestamp_timeout=-1' > /etc/sudoers.d/disable_timestamp_timeout"
+
+# --------------------------------
 # Clone this repository
 if [[ -d ~/.dotfiles ]] ; then
   (cd ${USER_DOTFILES_DIR} && git pull --ff-only origin master && git submodule update --init --recursive)
@@ -50,5 +69,3 @@ else
   curl -L -o "${LOCAL_TMPDIR}/packer.zip" "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
 fi
 unzip "${LOCAL_TMPDIR}/packer.zip" -d "${USER_BIN_DIR}"
-
-rm -rf ${LOCAL_TMPDIR}
