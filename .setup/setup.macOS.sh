@@ -18,6 +18,17 @@ function __setup_macos_preferences() {
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
   # --------------------------------
+  # Energy Saver
+  # on Battery
+  sudo pmset -b sleep 60
+  sudo pmset -b displaysleep 60
+  sudo pmset -b disksleep 60
+  # on Power Adapter
+  sudo pmset -c sleep 0
+  sudo pmset -c displaysleep 0
+  sudo pmset -b disksleep 0
+
+  # --------------------------------
   # Language & Region
   # Set first day of week to Monday
   defaults write NSGlobalDomain AppleFirstWeekday -dict 'gregorian' 2
