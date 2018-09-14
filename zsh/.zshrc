@@ -79,8 +79,6 @@ zle -N bracketed-paste bracketed-paste-magic
 zstyle :bracketed-paste-magic paste-init backward-extend-paste
 # }}}
 # aliases {{{
-# support UTF-8
-alias tmux='tmux -u'
 if [ 'Darwin' = $(uname -s) ]; then
   alias ls='ls -FG'
 else
