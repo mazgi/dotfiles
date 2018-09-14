@@ -47,6 +47,8 @@ if 1
   " JavaScript
   Bundle 'pangloss/vim-javascript'
   Bundle 'jelera/vim-javascript-syntax'
+  " TypeScript
+  Bundle 'leafgarland/typescript-vim'
 
   " Scala
   Bundle 'scala.vim'
