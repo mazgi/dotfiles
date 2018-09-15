@@ -7,8 +7,6 @@ if [[ ! -z $RUN_ZPROF ]]; then
   zmodload zsh/zprof
 fi
 # }}}
-export EDITOR=vim
-export FZF_DEFAULT_OPTS='--select-1 --exit-0 --layout=reverse'
 # plugins with zplug  {{{
 source ~/.zplug/init.zsh
 
@@ -33,6 +31,29 @@ fi
 if [[ -e ~/.zshrc.local ]] ; then
   . ~/.zshrc.local
 fi
+# }}}
+# custom functions {{{
+function mkdir-cd() {
+  mkdir -p $1 && cd $1
+}
+
+function go-repo() {
+  to=$(ghq root)/$(ghq list | fzf-tmux)
+  test ! -z ${to} && cd ${to}
+}
+
+function switch-branch() {
+  if [[ $(git status 2> /dev/null) ]]; then
+    target=$(git branch -vv | fzf-tmux | tr -d '*' | awk '{print $1}')
+    test ! -z ${target} && git checkout ${target}
+  fi
+}
+
+function render-xterm-256colors() {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
 # }}}
 # history settings {{{
 HISTFILE=$HOME/.zsh-history
@@ -79,7 +100,7 @@ zle -N bracketed-paste bracketed-paste-magic
 zstyle :bracketed-paste-magic paste-init backward-extend-paste
 # }}}
 # aliases {{{
-if [ 'Darwin' = $(uname -s) ]; then
+if [[ 'Darwin' = $(uname -s) ]]; then
   alias ls='ls -FG'
 else
   alias ls='ls -Fv --color'
@@ -90,34 +111,24 @@ alias -g G='| grep '
 alias -g M='| more '
 alias -g V='| vim -R -'
 # }}}
-# custom functions {{{
-function mkdir-cd() {
-  mkdir -p $1 && cd $1
-}
-
-function go-repo() {
-  to=$(ghq root)/$(ghq list | fzf-tmux)
-  test ! -z ${to} && cd ${to}
-}
-
-function switch-branch() {
-  if [[ $(git status 2> /dev/null) ]]; then
-    target=$(git branch -vv | fzf-tmux | tr -d '*' | awk '{print $1}')
-    test ! -z ${target} && git checkout ${target}
-  fi
-}
-
-function render-xterm-256colors() {
-  for i in {0..255} ; do
-    printf "\x1b[38;5;${i}mcolour${i}\n"
-  done
-}
-# }}}
-# set paths {{{
+# set envs {{{
+export EDITOR=vim
+export FZF_DEFAULT_OPTS='--select-1 --exit-0 --layout=reverse'
+export GOPATH="${HOME}/.go"
+export PATH="${GOPATH}/bin:${PATH}"
+fpath=(~/.zsh/completions $fpath)
 # gcloud
 if [[ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]]; then
   source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
   source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+fi
+# hub
+if (( $+commands[hub] )); then
+  eval "$(hub alias -s)"
+fi
+# direnv
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
 fi
 # }}}
 # zprof {{{
