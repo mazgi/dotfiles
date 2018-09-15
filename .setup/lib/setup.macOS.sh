@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 # Setup macOS preferences
 
-function __setup_macos_preferences() {
+function __setup_macos() {
   # --------------------------------
   # Terminal.app
   /usr/libexec/PlistBuddy -c 'Set "Startup Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist

@@ -3,7 +3,7 @@
 readonly LOCAL_TMPDIR="${TMPDIR}/$0"
 readonly DOTFILES_GIT_URL='git@github.com:mazgi/.dotfiles.git'
 readonly USER_DOTFILES_DIR="${HOME}/.dotfiles"
-readonly USER_BIN_DIR="${HOME}/bin"
+#readonly USER_BIN_DIR="${HOME}/bin"
 
 readonly PACKER_VERSION='1.2.5'
 
@@ -53,18 +53,21 @@ fi
 # --------------------------------
 # Setup macOS preferences
 if [[ 'Darwin' == $(uname -s) ]]; then
+  # Install Homebrew and packages
+  if [[ 'Darwin' == $(uname -s) ]]; then
+    if [[ ! $(which brew) ]]; then
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+  fi
+  brew bundle --global
   source ${USER_DOTFILES_DIR}/.setup/lib/setup.macOS.sh
-  __setup_macos_preferences
+  __setup_macos
 fi
 
 # --------------------------------
-# Install Homebrew and packages
-if [[ 'Darwin' == $(uname -s) ]]; then
-  if [[ ! $(which brew) ]]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  fi
-fi
-(cd ${USER_DOTFILES_DIR} && brew bundle)
+# Install packages via `go get`
+source ${USER_DOTFILES_DIR}/.setup/lib/setup.via.go-get.sh
+__setup_via_go_get
 
 # --------------------------------
 # Setup zsh
@@ -74,7 +77,7 @@ fi
 
 # --------------------------------
 # Download other tools
-mkdir -p ${USER_BIN_DIR}
+#mkdir -p ${USER_BIN_DIR}
 mkdir -p ${LOCAL_TMPDIR}
 
 ## Install Packer
