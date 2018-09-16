@@ -33,11 +33,15 @@ if [[ -e ~/.zshrc.local ]] ; then
 fi
 # }}}
 # custom functions {{{
+# ----------------------------------------------------------------
+# functions for file/directory operations
 function mkdir-cd() {
   mkdir -p $1 && cd $1
 }
 
-function go-repo() {
+# ----------------------------------------------------------------
+# functions for git operations
+function go-to-repository() {
   to=$(ghq root)/$(ghq list | fzf-tmux)
   test ! -z ${to} && cd ${to}
 }
@@ -49,7 +53,7 @@ function switch-branch() {
   fi
 }
 
-function return-to-default-branch-and-cleanup-merged-topic-branch() {
+function return-to-default-branch-and-delete-merged-topic-branch() {
   if [[ $(git status 2> /dev/null) ]]; then
     # Get default and topic branch.
     local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
@@ -82,6 +86,7 @@ function return-to-default-branch-and-cleanup-merged-topic-branch() {
   fi
 }
 
+# ----------------------------------------------------------------
 # functions for misc
 function render-xterm-256colors() {
   for i in {0..255} ; do
