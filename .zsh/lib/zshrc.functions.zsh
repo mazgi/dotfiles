@@ -11,8 +11,40 @@ function mkdir-cd() {
 # ----------------------------------------------------------------
 # functions for git and git web services operations
 function go-to-repository() {
+  local -A opts
+  local usage_msgs
+  local with_new_tmux_session=false
+
+  # build message for usage
+  usage_msgs=(
+  "usage: $0"
+  "        [-h | --help]"
+  "        [-T | --with-tmux]"
+  )
+
+  # parse arguments
+  zparseopts -D -M -A opts -E -- h -help=h T -with-tmux=T
+  if [[ -n ${opts[(i)-h]} ]]; then
+    printf "%s\n" "${usage_msgs[@]}"
+    return;
+  fi
+  if [[ -n ${opts[(i)-T]} ]]; then
+    with_new_tmux_session=true
+  fi
+
+  # to repository
   to=$(ghq root)/$(ghq list | fzf-tmux)
-  test ! -z ${to} && cd ${to}
+  if [[ -n "$to" ]]; then
+    cd "$to"
+
+    # (optionnal)create new tmux session
+    if [[ $with_new_tmux_session = true ]] && [[ -z $TMUX ]]; then
+      name="$(basename $(cd ../..; pwd))" # e.g. "github.com"
+      name+="/$(basename $(cd ..; pwd))"  # e.g. "github.com/mazgi"
+      name+="/$(basename $PWD)"           # e.g. "github.com/mazgi/.dotfiles"
+      tmux new -s "${name//\./-}"         # e.g. "github-com/mazgi/-dotfiles"
+    fi
+  fi
 }
 
 function create-repository() {
@@ -23,9 +55,9 @@ function create-repository() {
   fi
 
   local -A opts
-  local show_help_and_return_err=false
-  local err_msg
   local usage_msgs
+  local err_msg
+  local show_help_and_return_err=false
   local hub_cmd
   local git_service_base_url="github.com"
   local is_private=true
