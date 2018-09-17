@@ -42,7 +42,7 @@ function go-to-repository() {
       name="$(basename $(cd ../..; pwd))" # e.g. "github.com"
       name+="/$(basename $(cd ..; pwd))"  # e.g. "github.com/mazgi"
       name+="/$(basename $PWD)"           # e.g. "github.com/mazgi/.dotfiles"
-      tmux new -s "${name//\./-}"         # e.g. "github-com/mazgi/-dotfiles"
+      tmux new -s "${name//\./+}"         # e.g. "github+com/mazgi/+dotfiles"
     fi
   fi
 }
