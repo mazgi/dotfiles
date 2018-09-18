@@ -1,5 +1,6 @@
 #!/bin/bash -eu
 
+readonly USER_NAME="$(whoami)"
 readonly LOCAL_TMPDIR="${TMPDIR}/$0"
 readonly DOTFILES_GIT_URL='git@github.com:mazgi/.dotfiles.git'
 readonly USER_DOTFILES_DIR="${HOME}/.dotfiles"
@@ -82,6 +83,10 @@ fi
 # Download other tools
 #mkdir -p ${USER_BIN_DIR}
 mkdir -p ${LOCAL_TMPDIR}
+
+# --------------------------------
+# Set login shell
+sudo chsh -s /bin/zsh $USER_NAME
 
 ## Install Packer
 ## ToDo: update version
