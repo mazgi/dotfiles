@@ -4,7 +4,7 @@
 Sign in iCloud on macOS GUI.
 
 ```shellsession
-curl -L --proto-redir -all,https 'https://raw.githubusercontent.com/mazgi/.dotfiles/master/.setup/setup.sh' | bash
+curl -L --proto-redir -all,https 'https://raw.githubusercontent.com/mazgi/.dotfiles/master/setup/setup.sh' | bash
 ```
 
 ## How to develop

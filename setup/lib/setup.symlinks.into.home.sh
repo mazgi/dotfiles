@@ -5,8 +5,8 @@ function __setup_symlinks_into_home() {
   ".git"
   ".gitignore"
   ".gitmodules"
-  ".setup"
   "README.md"
+  "setup"
   )
 
   for file in $(\ls -1A $USER_DOTFILES_DIR); do
