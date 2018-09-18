@@ -51,13 +51,16 @@ else
 fi
 
 # --------------------------------
+# Create symlinks into ~/
+source ${USER_DOTFILES_DIR}/.setup/lib/setup.symlinks.into.home.sh
+__setup_symlinks_into_home
+
+# --------------------------------
 # Setup macOS preferences
 if [[ 'Darwin' == $(uname -s) ]]; then
   # Install Homebrew and packages
-  if [[ 'Darwin' == $(uname -s) ]]; then
-    if [[ ! $(which brew) ]]; then
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
+  if [[ ! $(which brew) ]]; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
   brew bundle --global
   source ${USER_DOTFILES_DIR}/.setup/lib/setup.macOS.sh
