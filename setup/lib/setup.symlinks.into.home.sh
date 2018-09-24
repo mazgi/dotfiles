@@ -3,6 +3,7 @@
 function __setup_symlinks_into_home() {
   local excludes=(
   ".git"
+  ".gitattributes"
   ".gitignore"
   ".gitmodules"
   "README.md"
@@ -22,7 +23,7 @@ function __setup_symlinks_into_home() {
       if [[ -e $file ]] && [[ ! -L $file ]]; then
         mv -fv $file __RENAMED_BY_SETUP__.${file/./}
       fi
-      ln -sfnv $USER_DOTFILES_DIR/$file ${file/__AVOID_GIT_CONFLICT__/}
+      ln -sfnv $USER_DOTFILES_DIR/$file ${file/.__AVOID_GIT_CONFLICT__/}
     fi
   done
 }

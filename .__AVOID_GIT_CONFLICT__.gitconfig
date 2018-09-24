@@ -1,7 +1,8 @@
 [include]
   path = .gitconfig.local
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = ~/._git/gitignore
+  attributesfile = ~/._git/gitattributes
   editor = vim
 [color]
   ui = auto
