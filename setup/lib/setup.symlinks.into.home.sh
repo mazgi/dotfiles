@@ -10,6 +10,7 @@ function __setup_symlinks_into_home() {
   "setup"
   )
 
+  cd $HOME
   for file in $(\ls -1A $USER_DOTFILES_DIR); do
     local is_exclude=false
     for exclude in ${excludes[@]}; do

@@ -53,8 +53,17 @@ fi
 
 # --------------------------------
 # Create symlinks into ~/
+(
 source ${USER_DOTFILES_DIR}/setup/lib/setup.symlinks.into.home.sh
 __setup_symlinks_into_home
+)
+
+# --------------------------------
+# Install zsh completions
+(
+source ${USER_DOTFILES_DIR}/setup/lib/setup.install.zsh-completions.sh
+__setup_install_zsh_completions
+)
 
 # --------------------------------
 # Setup macOS preferences
@@ -64,14 +73,18 @@ if [[ 'Darwin' == $(uname -s) ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
   brew bundle --global
+  (
   source ${USER_DOTFILES_DIR}/setup/lib/setup.macOS.sh
   __setup_macos
+  )
 fi
 
 # --------------------------------
 # Install packages via `go get`
+(
 source ${USER_DOTFILES_DIR}/setup/lib/setup.via.go-get.sh
 __setup_via_go_get
+)
 
 # --------------------------------
 # Setup zsh
