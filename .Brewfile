@@ -12,6 +12,7 @@ brew "git-lfs"
 brew "gnupg"
 brew "go"
 brew "htop"
+brew "hub"
 brew "imagemagick"
 brew "jq"
 brew "mas"
@@ -37,6 +38,7 @@ cask "vivaldi"
 cask "vlc"
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
+mas "Install macOS Mojave", id: 0
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Numbers", id: 409203825
