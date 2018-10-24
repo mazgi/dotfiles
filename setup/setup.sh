@@ -52,6 +52,10 @@ else
 fi
 
 # --------------------------------
+# Create my working directory
+mkdir -p ~/Creations/
+
+# --------------------------------
 # Create symlinks into ~/
 (
 source ${USER_DOTFILES_DIR}/setup/lib/setup.symlinks.into.home.sh
