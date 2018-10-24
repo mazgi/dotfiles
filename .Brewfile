@@ -6,9 +6,8 @@ tap "homebrew/core"
 tap "mazgi/betagarden"
 brew "bat"
 brew "docker", link: false
-brew "ffmpeg", args: ["with-libass", "with-openh264", "with-srt", "with-x265"]
+brew "ffmpeg", args: ["with-libass", "with-openh264", "with-srt"]
 brew "fzf"
-brew "ghq"
 brew "git-lfs"
 brew "gnupg"
 brew "go"
@@ -25,9 +24,10 @@ brew "tree"
 brew "unar"
 brew "watch"
 cask "1password"
+cask "adobe-creative-cloud"
+cask "blender"
 cask "docker"
 cask "font-source-code-pro"
-cask "google-cloud-sdk"
 cask "grammarly"
 cask "mono-mdk"
 cask "unity-hub"
@@ -36,8 +36,11 @@ cask "visual-studio-code"
 cask "vivaldi"
 cask "vlc"
 mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
 mas "WhiteNoise", id: 415139197
