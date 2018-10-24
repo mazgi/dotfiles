@@ -40,6 +40,7 @@ function __setup_macos() {
   # Trackpad
   # Enable clicking
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  /usr/libexec/PlistBuddy -c 'Set "com.apple.mouse.tapBehavior" 1' ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
 
   # Mission Control
   defaults write com.apple.dock mru-spaces -bool false
