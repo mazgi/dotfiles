@@ -37,6 +37,18 @@ function __setup_macos() {
   #defaults write NSGlobalDomain AppleMeasurementUnits -string 'Centimeters'
   #defaults write NSGlobalDomain AppleTemperatureUnit -string 'Celsius'
 
+  # keyboard
+  #   - 1452-597: Apple Wireless Keyboard
+  #   - 1452-631: Apple Internal Keyboard / Trackpad
+  #   - 1452-615: Magic Keyboard
+  for keyboard in '1452-597' '1452-631' '1452-615'
+  do
+    /usr/libexec/PlistBuddy -c "Delete com.apple.keyboard.modifiermapping.${keyboard}-0" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+    /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0 array" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+    /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0:0:HIDKeyboardModifierMappingSrc integer 30064771129" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+    /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0:0:HIDKeyboardModifierMappingDst integer 30064771300" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+  done
+
   # Trackpad
   # Enable clicking
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
