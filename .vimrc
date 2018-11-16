@@ -53,6 +53,9 @@ if 1
   " Scala
   Bundle 'scala.vim'
 
+  " Go
+  Plugin 'fatih/vim-go'
+
   " Color schemes
   Bundle 'w0ng/vim-hybrid'
 
