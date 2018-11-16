@@ -78,6 +78,10 @@ export EDITOR=vim
 export FZF_DEFAULT_OPTS='--select-1 --exit-0 --layout=reverse'
 export GOPATH="${HOME}/.go"
 export PATH="${GOPATH}/bin:${PATH}"
+# Android SDK
+if [[ -d "${HOME}/Library/Android/sdk/" ]]; then
+  export PATH="${HOME}/Library/Android/sdk/platform-tools:${PATH}"
+fi
 fpath=(~/.zsh/completions $fpath)
 # gcloud
 if [[ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]]; then
