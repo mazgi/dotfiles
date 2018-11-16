@@ -54,7 +54,7 @@ if 1
   Bundle 'scala.vim'
 
   " Go
-  Plugin 'fatih/vim-go'
+  Bundle 'fatih/vim-go'
 
   " Color schemes
   Bundle 'w0ng/vim-hybrid'
