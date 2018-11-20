@@ -16,15 +16,15 @@ if 1
   " required!
   Bundle 'gmarik/vundle'
 
-  " My Bundles here:
   Bundle 'stephpy/vim-yaml'
 
-  "   original repos on github
   Bundle 'tpope/vim-fugitive'
   Bundle 'gregsexton/gitv'
   Bundle 'quickrun.vim'
 
   Bundle 'AutoComplPop'
+
+  Bundle 'editorconfig/editorconfig-vim'
 
   " Syntax check
   Bundle 'tpope/vim-pathogen'
