@@ -6,6 +6,7 @@ function __setup_symlinks_into_home() {
   ".gitattributes"
   ".gitignore"
   ".gitmodules"
+  "LICENSE"
   "README.md"
   "setup"
   )
