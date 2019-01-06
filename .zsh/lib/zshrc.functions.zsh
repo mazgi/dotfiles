@@ -199,3 +199,12 @@ function render-xterm-256colors() {
     printf "\x1b[38;5;${i}mcolour${i}\n"
   done
 }
+
+# Todo: support linux
+function build-nativefier() {
+  name="$1"
+  url="$2"
+  docker pull mazgi/nativefier
+  docker run -v $PWD:/pwd -w /pwd mazgi/nativefier nativefier --platform osx --counter --bounce --name "$name" "$url"
+  open .
+}
