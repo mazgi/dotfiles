@@ -3,6 +3,10 @@
 
 function __setup_macos() {
   # --------------------------------
+  # iTunes.app
+  defaults write com.apple.iTunesHelper ignore-devices 1
+
+  # --------------------------------
   # Terminal.app
   /usr/libexec/PlistBuddy -c 'Set "Startup Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist
   /usr/libexec/PlistBuddy -c 'Set "Default Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist
