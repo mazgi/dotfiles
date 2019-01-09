@@ -205,6 +205,6 @@ function build-nativefier() {
   name="$1"
   url="$2"
   docker pull mazgi/nativefier
-  docker run -v $PWD:/pwd -w /pwd mazgi/nativefier nativefier --platform osx --counter --bounce --name "$name" "$url"
+  docker run -v $PWD:/pwd -w /pwd mazgi/nativefier nativefier --platform osx --counter --bounce --internal-urls '.*' --name "$name" "$url"
   open .
 }
