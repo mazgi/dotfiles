@@ -41,7 +41,8 @@ function __setup_macos() {
   #defaults write NSGlobalDomain AppleMeasurementUnits -string 'Centimeters'
   #defaults write NSGlobalDomain AppleTemperatureUnit -string 'Celsius'
 
-  # keyboard
+  # --------------------------------
+  # Keyboard
   #   - 1452-597: Apple Wireless Keyboard
   #   - 1452-631: Apple Internal Keyboard / Trackpad
   #   - 1452-615: Magic Keyboard
@@ -53,6 +54,7 @@ function __setup_macos() {
     /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0:0:HIDKeyboardModifierMappingDst integer 30064771300" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
   done
 
+  # --------------------------------
   # Trackpad
   # Enable clicking
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -61,6 +63,8 @@ function __setup_macos() {
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   #
   /usr/libexec/PlistBuddy -c 'Set "com.apple.mouse.tapBehavior" 1' ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+  # Enable three finger drag
+  defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
 
   # Mission Control
   defaults write com.apple.dock mru-spaces -bool false
