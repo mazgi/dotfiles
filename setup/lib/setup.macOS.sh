@@ -41,6 +41,19 @@ function __setup_macos() {
   #defaults write NSGlobalDomain AppleMeasurementUnits -string 'Centimeters'
   #defaults write NSGlobalDomain AppleTemperatureUnit -string 'Celsius'
 
+  ## --------------------------------
+  ## Input Sources
+  #/usr/libexec/PlistBuddy -c 'Add "AppleCurrentKeyboardLayoutInputSourceID" string "com.apple.keylayout.US"' ~/Library/Preferences/com.apple.HIToolbox.plist
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources" array' ~/Library/Preferences/com.apple.HIToolbox.plist
+  ## 
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources:0:Bundle ID" string "com.apple.inputmethod.Kotoeri"' ~/Library/Preferences/com.apple.HIToolbox.plist
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources:0:Input Mode" string "com.apple.inputmethod.Japanese"' ~/Library/Preferences/com.apple.HIToolbox.plist
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources:0:InputSourceKind" string "Input Mode"' ~/Library/Preferences/com.apple.HIToolbox.plist
+  ## 
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources:1:Bundle ID" string "com.apple.inputmethod.Kotoeri"' ~/Library/Preferences/com.apple.HIToolbox.plist
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources:1:Input Mode" string "com.apple.inputmethod.Roman"' ~/Library/Preferences/com.apple.HIToolbox.plist
+  #/usr/libexec/PlistBuddy -c 'Add "AppleEnabledInputSources:1:InputSourceKind" string "Input Mode"' ~/Library/Preferences/com.apple.HIToolbox.plist
+
   # --------------------------------
   # Keyboard
   #   - 1452-597: Apple Wireless Keyboard
