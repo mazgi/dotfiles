@@ -56,6 +56,10 @@ function __setup_macos() {
   # Trackpad
   # Enable clicking
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  # in macOS >= 10.12
+  # ref: https://github.com/mathiasbynens/dotfiles/issues/793#issuecomment-344154171
+  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+  #
   /usr/libexec/PlistBuddy -c 'Set "com.apple.mouse.tapBehavior" 1' ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
 
   # Mission Control
