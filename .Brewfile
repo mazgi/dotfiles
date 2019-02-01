@@ -43,6 +43,8 @@ cask "vagrant"
 cask "visual-studio-code"
 cask "vivaldi"
 cask "vlc"
+cask "wacom-tablet"
+mas "Bluetooth MIDI Connect", id: 1074606480
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
