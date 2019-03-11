@@ -1,7 +1,8 @@
 
 ## How to use
 
-Sign in iCloud on macOS GUI.
+1. Sign in iCloud on macOS GUI.
+1. Install "git" command.
 
 ```shellsession
 curl -L --proto-redir -all,https 'https://raw.githubusercontent.com/mazgi/.dotfiles/master/setup/setup.sh' | bash
