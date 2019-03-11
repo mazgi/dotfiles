@@ -2,7 +2,7 @@
 
 readonly USER_NAME="$(whoami)"
 readonly LOCAL_TMPDIR="${TMPDIR:-/tmp}/$0"
-readonly DOTFILES_GIT_URL='git@github.com:mazgi/.dotfiles.git'
+readonly DOTFILES_GIT_URL='https://github.com/mazgi/.dotfiles.git'
 readonly USER_DOTFILES_DIR="${HOME}/.dotfiles"
 #readonly USER_BIN_DIR="${HOME}/bin"
 
