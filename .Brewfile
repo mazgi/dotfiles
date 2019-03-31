@@ -5,6 +5,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "mazgi/betagarden"
 brew "bat"
+brew "circleci"
 brew "cocoapods"
 brew "ffmpeg"
 brew "fping"
@@ -51,6 +52,7 @@ mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
