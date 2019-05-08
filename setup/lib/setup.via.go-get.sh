@@ -2,10 +2,7 @@
 
 export GOPATH="${HOME}/.go"
 mkdir -p $GOPATH/bin
-(
-cd $GOPATH;
-ln -s ~/Creations src
-)
+mkdir -p $GOPATH/src
 
 function __setup_via_go_get() {
   local pkgs=(
