@@ -1,119 +1,82 @@
-if 1
-  "=======================
-  " Begin Vundle section
-  "-----------------------
-  set nocompatible  " be Improved
-  filetype off      " required!
+if !1 | finish | endif
 
-  if $GOROOT != ''
-    set rtp+=$GOROOT/misc/vim
-  endif
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-  " let Vundle manage Vundle
-  " required!
-  Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-  Bundle 'stephpy/vim-yaml'
+Plugin 'w0ng/vim-hybrid'
 
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'gregsexton/gitv'
-  Bundle 'quickrun.vim'
+Plugin 'hashivim/vim-terraform'
+let g:terraform_fmt_on_save = 1
 
-  Bundle 'AutoComplPop'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-  Bundle 'editorconfig/editorconfig-vim'
+"Bundle 'stephpy/vim-yaml'
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'gregsexton/gitv'
+"Bundle 'quickrun.vim'
+"Bundle 'AutoComplPop'
+"Bundle 'editorconfig/editorconfig-vim'
+"Bundle 'tpope/vim-pathogen'
+"Bundle 'scrooloose/syntastic'
+"call pathogen#infect()
+"Bundle 'Markdown'
+"Bundle 'chr4/nginx.vim'
+"Bundle 'slim-template/vim-slim'
+"Bundle 'pangloss/vim-javascript'
+"Bundle 'jelera/vim-javascript-syntax'
+"Bundle 'leafgarland/typescript-vim'
+"Bundle 'scala.vim'
+"Bundle 'fatih/vim-go'
 
-  " Syntax check
-  Bundle 'tpope/vim-pathogen'
-  Bundle 'scrooloose/syntastic'
-  call pathogen#infect()
+syntax on
 
-  " Syntax highlight
-  Bundle 'Markdown'
+set modeline
+set modelines=3
 
-  " Terraform
-  Bundle 'hashivim/vim-terraform'
-  let g:terraform_fmt_on_save = 1
+set autoindent
+set cindent
+set smartindent
 
-  " Middlewares
-  Bundle 'chr4/nginx.vim'
+set expandtab
+set list
+set number
+set showmatch
 
-  " Web
-  Bundle 'slim-template/vim-slim'
+set tabstop=2
+set shiftwidth=2
+set backspace=indent,eol,start
 
-  " JavaScript
-  Bundle 'pangloss/vim-javascript'
-  Bundle 'jelera/vim-javascript-syntax'
-  " TypeScript
-  Bundle 'leafgarland/typescript-vim'
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
-  " Scala
-  Bundle 'scala.vim'
+set background=dark
+colorscheme hybrid
 
-  " Go
-  Bundle 'fatih/vim-go'
+augroup VIMRC
+  autocmd!
+  " 
+  autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+  autocmd InsertEnter * highlight CursorLine ctermbg=0
+  autocmd InsertLeave * highlight CursorLine ctermbg=235
+  autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
+  " File types
+  "autocmd BufRead,BufNewFile *.scala set filetype=scala
 
-  " Color schemes
-  Bundle 'w0ng/vim-hybrid'
-
-  "   vim-scripts repos
-  "Bundle 'L9'
-
-  "   non github repos
-  "Bundle 'git://git.example.com/command.git'
-
-  filetype plugin indent on   " required!
-  "-----------------------
-  " End Vundle section
-  "=======================
-
-  syntax on
-
-  " modeline
-  set modeline
-  set modelines=3
-
-  " indent
-  set autoindent
-  set cindent
-  set smartindent
-
-  set nocompatible
-  set expandtab
-  set list
-  set number
-  set showmatch
-
-  set tabstop=2
-  set shiftwidth=2
-  set backspace=indent,eol,start
-
-  " Encoding
-  set encoding=utf-8
-  set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
-
-  set background=dark
-  colorscheme hybrid
-
-  augroup VIMRC
-    autocmd!
-    " 
-    autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
-    autocmd InsertEnter * highlight CursorLine ctermbg=0
-    autocmd InsertLeave * highlight CursorLine ctermbg=235
-    autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
-    " File types
-    "autocmd BufRead,BufNewFile *.scala set filetype=scala
-
-    "autocmd FileType fstab setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
-    autocmd FileType limits setlocal expandtab shiftwidth=4 softtabstop=4
-    autocmd FileType pam setlocal noexpandtab shiftwidth=4 softtabstop=4
-    " 
-    autocmd QuickFixCmdPost vimgrep cwindow
-  augroup END
-endif " end of 'if 1'
-
+  "autocmd FileType fstab setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+  autocmd FileType limits setlocal expandtab shiftwidth=4 softtabstop=4
+  autocmd FileType pam setlocal noexpandtab shiftwidth=4 softtabstop=4
+  " 
+  autocmd QuickFixCmdPost vimgrep cwindow
+augroup END
