@@ -1,5 +1,9 @@
 if !1 | finish | endif
 
+" detect OS and hardware
+let s:os = substitute(system('uname -s'), '\n', '', '')
+let s:arch = substitute(system('uname -m'), '\n', '', '')
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -16,6 +20,14 @@ Plugin 'w0ng/vim-hybrid'
 
 Plugin 'hashivim/vim-terraform'
 let g:terraform_fmt_on_save = 1
+
+Plugin 'fatih/vim-go'
+let g:go_metalinter_autosave = 1
+
+if s:os == 'Darwin'
+  set rtp+=/usr/local/opt/fzf
+endif
+Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,7 +49,6 @@ filetype plugin indent on    " required
 "Bundle 'jelera/vim-javascript-syntax'
 "Bundle 'leafgarland/typescript-vim'
 "Bundle 'scala.vim'
-"Bundle 'fatih/vim-go'
 
 syntax on
 
