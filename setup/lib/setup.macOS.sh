@@ -16,6 +16,14 @@ function __setup_macos() {
   #/usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:VisualBellOnlyWhenMuted" false' ~/Library/Preferences/com.apple.Terminal.plist
   /usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:shellExitAction" 1' ~/Library/Preferences/com.apple.Terminal.plist
 
+  # Set font
+  local workdir=$(mktemp -d)
+  /usr/libexec/PlistBuddy -x -c 'Print "Window Settings:Pro:Font"' ~/Library/Preferences/com.apple.Terminal.plist > ${workdir}/font.xml
+  xmllint --xpath '/plist/data/text()' ${workdir}/font.xml | base64 --decode --output ${workdir}/font.plist
+  /usr/libexec/PlistBuddy -c 'Set :$objects:2 SauceCodePowerline-Regular' ${workdir}/font.plist
+  /usr/libexec/PlistBuddy -c "Import \"Window Settings:Pro:Font\" ${workdir}/font.plist" ~/Library/Preferences/com.apple.Terminal.plist
+  rm -rf ${workdir}
+
   # --------------------------------
   # Finder & File
   # Avoid creating `.DS_Store` file on network strages.
