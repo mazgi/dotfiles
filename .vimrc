@@ -20,13 +20,18 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+nmap <C-p> <Plug>AirlineSelectPrevTab
+nmap <C-n> <Plug>AirlineSelectNextTab
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 Plugin 'hashivim/vim-terraform'
 let g:terraform_fmt_on_save = 1
 
 Plugin 'fatih/vim-go'
+let g:go_fmt_command = "goimports"
 let g:go_metalinter_autosave = 1
 
 if s:os == 'Darwin'
