@@ -59,15 +59,11 @@ cask "vivaldi"
 cask "vlc"
 cask "wacom-tablet"
 cask "zoomus"
-mas "BetterSnapTool", id: 417375580
 mas "Bluetooth MIDI Connect", id: 1074606480
 mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Microsoft Remote Desktop", id: 1295203466
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
 mas "White Noise", id: 415139197
