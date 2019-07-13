@@ -48,7 +48,7 @@ __setup_symlinks_into_home
 # Setup macOS preferences
 if [[ 'Darwin' == $(uname -s) ]]; then
   # Install the command line developer tools
-  if ! $(xcode-select --print-path | grep --quiet 'CommandLineTools' )
+  if ! $(xcode-select --print-path | grep --quiet 'CommandLineTools' ); then
     xcode-select --install
   fi
 
