@@ -9,8 +9,13 @@ I am glad if you got a good reference for your provisioning.
 ## How to use (macOS)
 
 1. Sign in iCloud on your macOS via GUI.
-1. Install the "git" command to your macOS.
-1. Execute a command on your terminal as follows:
+2. Install the "git" command to your macOS.
+
+```shellsession
+xcode-select --install
+```
+
+3. Execute a command on your terminal as follows:
 
 ```shellsession
 curl -L --proto-redir -all,https 'https://raw.githubusercontent.com/mazgi/.dotfiles/master/setup/setup.sh' | bash

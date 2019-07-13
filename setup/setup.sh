@@ -47,6 +47,11 @@ __setup_symlinks_into_home
 # --------------------------------
 # Setup macOS preferences
 if [[ 'Darwin' == $(uname -s) ]]; then
+  # Install the command line developer tools
+  if ! $(xcode-select --print-path | grep --quiet 'CommandLineTools' )
+    xcode-select --install
+  fi
+
   # Install Homebrew and packages
   if [[ ! $(which brew) ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
