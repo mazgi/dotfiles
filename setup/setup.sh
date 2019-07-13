@@ -77,6 +77,7 @@ if [[ 'Darwin' == $(uname -s) ]]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
   brew bundle --global
+  sudo xcodebuild -license accept
   (
   source ${USER_DOTFILES_DIR}/setup/lib/setup.macOS.sh
   __setup_macos
