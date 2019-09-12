@@ -7,6 +7,23 @@ if [[ ! -z $RUN_ZPROF ]]; then
   zmodload zsh/zprof
 fi
 # }}}
+# plugins with zplug  {{{
+source ~/.zplug/init.zsh
+
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-syntax-highlighting'
+zplug "supercrabtree/k"
+zplug 'mazgi/zsh-themes', as:theme, use:workstation-heavy.zsh-theme
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+zplug load
+# }}}
 # laod profiles {{{
 if [[ -e /etc/profile ]] ; then
   . /etc/profile
@@ -100,23 +117,10 @@ fi
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
-# }}}
-# plugins with zplug  {{{
-source ~/.zplug/init.zsh
-
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-syntax-highlighting'
-zplug "supercrabtree/k"
-zplug 'mazgi/zsh-themes', as:theme, use:workstation-heavy.zsh-theme
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+# kubectl
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
 fi
-zplug load
 # }}}
 # zprof {{{
 if [[ ! -z $RUN_ZPROF ]]; then
