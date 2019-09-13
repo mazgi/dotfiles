@@ -73,6 +73,19 @@ zle -N insert-last-word smart-insert-last-word
 #zstyle :insert-last-word match '([:alpha:]){2,}'
 bindkey '^]' insert-last-word
 # }}}
+# Setup fzf {{{
+# https://github.com/junegunn/fzf
+if [[ -d "${HOME}/.fzf/.git/" ]]; then
+  if [[ ! "$PATH" == *${HOME}/.fzf/bin* ]]; then
+    export PATH="${PATH:+${PATH}:}${HOME}/.fzf/bin"
+  fi
+  # Auto-completion
+  [[ $- == *i* ]] && source "${HOME}/.fzf/shell/completion.zsh" 2> /dev/null
+  # Key bindings
+  source "${HOME}/.fzf/shell/key-bindings.zsh"
+fi
+export FZF_DEFAULT_OPTS='--select-1 --exit-0 --layout=reverse'
+# }}}
 # url-quote-magic {{{
 autoload -Uz url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
