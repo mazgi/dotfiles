@@ -72,6 +72,13 @@ __setup_via_go_get
 )
 
 # --------------------------------
+# Install packages via cargo
+(
+source ${USER_DOTFILES_DIR}/setup/lib/setup.via.cargo.sh
+__setup_via_cargo
+)
+
+# --------------------------------
 # Setup zsh
 (
 source ${USER_DOTFILES_DIR}/setup/lib/setup.install.zsh-completions.sh
