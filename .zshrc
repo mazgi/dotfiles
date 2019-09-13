@@ -13,8 +13,9 @@ source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
-zplug "supercrabtree/k"
-zplug 'mazgi/zsh-themes', as:theme, use:workstation-heavy.zsh-theme
+if (( ! $+commands[starship] )); then
+  zplug 'mazgi/zsh-themes', as:theme, use:workstation-heavy.zsh-theme
+fi
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -95,15 +96,9 @@ export EDITOR=vim
 export FZF_DEFAULT_OPTS='--select-1 --exit-0 --layout=reverse'
 export GOPATH="${HOME}/.go"
 export PATH="${GOPATH}/bin:${PATH}"
-# Android SDK
-if [[ -d "${HOME}/Library/Android/sdk/" ]]; then
-  export PATH="${HOME}/Library/Android/sdk/platform-tools:${PATH}"
-fi
-fpath=(~/.zsh/completions $fpath)
-# gcloud
-if [[ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]]; then
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+# Cargo
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+  export PATH="${HOME}/.cargo/bin:${PATH}"
 fi
 # Common Lisp
 if [[ -d "${HOME}/.roswell/bin" ]]; then
@@ -120,6 +115,21 @@ fi
 # kubectl
 if (( $+commands[kubectl] )); then
   source <(kubectl completion zsh)
+fi
+# Android SDK
+if [[ -d "${HOME}/Library/Android/sdk/" ]]; then
+  export PATH="${HOME}/Library/Android/sdk/platform-tools:${PATH}"
+fi
+fpath=(~/.zsh/completions $fpath)
+# gcloud
+if [[ -d "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk" ]]; then
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+  source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+fi
+# starship prompt
+# https://github.com/starship/starship
+if (( $+commands[starship] )); then
+  eval "$(starship init zsh)"
 fi
 # }}}
 # zprof {{{
