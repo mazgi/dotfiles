@@ -8,7 +8,8 @@ if [[ ! -z $RUN_ZPROF ]]; then
 fi
 # }}}
 # plugins with zplug  {{{
-source ~/.zplug/init.zsh
+export ZPLUG_HOME="${HOME}/.dotfiles/.zsh/lib/zplug"
+source "${ZPLUG_HOME}/init.zsh"
 
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
