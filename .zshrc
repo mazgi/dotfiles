@@ -30,6 +30,9 @@ zplug load
 if [[ -e /etc/profile ]] ; then
   . /etc/profile
 fi
+if [[ -e ~/.profile ]] ; then
+  . ~/.profile
+fi
 if [[ -e ~/.zshrc.local ]] ; then
   . ~/.zshrc.local
 fi
