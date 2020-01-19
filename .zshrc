@@ -88,18 +88,21 @@ alias -g V='| vim -R -'
 
 export EDITOR=vim
 
-# Cargo
-if [[ -d "${HOME}/.cargo/bin" ]]; then
-  export PATH="${HOME}/.cargo/bin:${PATH}"
+# Append cargo binaries path to the command search path.
+if [[ -d ${HOME}/.cargo/bin ]]; then
+  export PATH="${PATH}:${HOME}/.cargo/bin"
 fi
+# Append go binaries path to the command search path.
+if (( ${+GOPATH} )); then
+  if [[ -d ${GOPATH}/bin ]]; then
+    export PATH="${PATH}:${GOPATH}/bin"
+  fi
+fi
+
 # hub
-if (( $+commands[hub] )); then
-  eval "$(hub alias -s)"
-fi
+command -v hub > /dev/null && eval "$(hub alias -s)"
 # direnv
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
-fi
+command -v direnv > /dev/null && eval "$(direnv hook zsh)"
 
 if [[ ! -z $RUN_ZPROF ]]; then
   if command -v zprof > /dev/null; then
