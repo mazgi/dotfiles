@@ -7,16 +7,6 @@ fi
 
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 
-# starship prompt
-# See: https://github.com/starship/starship
-if command -v starship > /dev/null; then
-  eval "$(starship init zsh)"
-fi
-
-if [[ -e ${ZDOTDIR}/.zshrc.local ]]; then
-  . ${ZDOTDIR}/.zshrc.local
-fi
-
 # autoload -U compinit
 # compinit
 # See:
@@ -99,10 +89,16 @@ if (( ${+GOPATH} )); then
   fi
 fi
 
-# hub
+# hub: https://github.com/github/hub
 command -v hub > /dev/null && eval "$(hub alias -s)"
-# direnv
+# direnv: https://github.com/direnv/direnv
 command -v direnv > /dev/null && eval "$(direnv hook zsh)"
+# starship; https://github.com/starship/starship
+command -v starship > /dev/null && eval "$(starship init zsh)"
+
+if [[ -e ${ZDOTDIR}/.zshrc.local ]]; then
+  . ${ZDOTDIR}/.zshrc.local
+fi
 
 if [[ ! -z $RUN_ZPROF ]]; then
   if command -v zprof > /dev/null; then
