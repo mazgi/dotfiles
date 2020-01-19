@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
-[submodule ".zsh/lib/zplug"]
-	path = .zsh/lib/zplug
-	url = https://github.com/zplug/zplug.git
 [submodule ".zsh/lib/zsh-users/zsh-autosuggestions"]
 	path = .zsh/lib/zsh-users/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
