@@ -7,6 +7,7 @@ let s:arch = substitute(system('uname -m'), '\n', '', '')
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" See https://github.com/VundleVim/Vundle.vim
 " set the runtime path to include Vundle and initialize
 set rtp +=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -24,44 +25,13 @@ let g:airline#extensions#tabline#enabled = 1
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-
-Plugin 'hashivim/vim-terraform'
-let g:terraform_fmt_on_save = 1
-
-Plugin 'fatih/vim-go'
-let g:go_fmt_command = "goimports"
-let g:go_metalinter_autosave = 1
-
-if s:os == 'Darwin'
-  set rtp +=/usr/local/opt/fzf
-endif
-Plugin 'junegunn/fzf.vim'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"Bundle 'stephpy/vim-yaml'
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'gregsexton/gitv'
-"Bundle 'quickrun.vim'
-"Bundle 'AutoComplPop'
-"Bundle 'editorconfig/editorconfig-vim'
-"Bundle 'tpope/vim-pathogen'
-"Bundle 'scrooloose/syntastic'
-"call pathogen#infect()
-"Bundle 'Markdown'
-"Bundle 'chr4/nginx.vim'
-"Bundle 'slim-template/vim-slim'
-"Bundle 'pangloss/vim-javascript'
-"Bundle 'jelera/vim-javascript-syntax'
-"Bundle 'leafgarland/typescript-vim'
-"Bundle 'scala.vim'
-
 syntax on
 
+" always shown the status line.
 set laststatus =2
 
 set modeline
@@ -88,18 +58,16 @@ colorscheme hybrid
 
 augroup VIMRC
   autocmd!
-  " 
+  " cursor and highlight
   autocmd VimEnter,BufWinEnter,WinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
   autocmd InsertEnter * highlight CursorLine ctermbg = 0
   autocmd InsertLeave * highlight CursorLine ctermbg = 235
-  autocmd BufRead,BufNewFile *.zsh-theme set filetype=zsh
-  " File types
-  "autocmd BufRead,BufNewFile *.scala set filetype=scala
+  " vimgrep
+  autocmd QuickFixCmdPost vimgrep cwindow
 
   "autocmd FileType fstab setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
   autocmd FileType limits setlocal expandtab shiftwidth=4 softtabstop=4
   autocmd FileType pam setlocal noexpandtab shiftwidth=4 softtabstop=4
-  " 
-  autocmd QuickFixCmdPost vimgrep cwindow
 augroup END
+
