@@ -17,8 +17,25 @@ if [[ -e ${ZDOTDIR}/.zshrc.local ]]; then
   . ${ZDOTDIR}/.zshrc.local
 fi
 
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
+# See:
+# - https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
+# - https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
+# - http://zsh.sourceforge.net/Doc/Release/Shell-Builtin-Commands.html
+#   - With the -U flag, alias expansion is suppressed when the function is loaded.
+#   - The flags -z and -k mark the function to be autoloaded using the zsh or ksh style, as if the option KSH_AUTOLOAD were unset or were set, respectively. The flags override the setting of the option at the time the function is loaded.
+# - http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Use-of-compinit
+#   - The dumped file is .zcompdump in the same directory as the startup files (i.e. $ZDOTDIR or $HOME);
+#   - The check performed to see if there are new functions can be omitted by giving the option -C. In this case the dump file will only be created if there isn’t one already.
+# - http://zsh.sourceforge.net/Doc/Release/Expansion.html#Glob-Qualifiers
+#   - N - sets the NULL_GLOB option for the current pattern
+#   - m[Mwhms][-|+]n - like the file access qualifier, except that it uses the file modification time.
+autoload -Uz compinit
+for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 # fpath=(${ZDOTDIR}/.zsh/lib/zsh-users/zsh-completions/src $fpath)
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh 
