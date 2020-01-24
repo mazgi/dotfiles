@@ -7,6 +7,8 @@ fi
 
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 
+# `source` it above `compinit`
+# See https://github.com/zdharma/zinit#option-2---manual-installation
 source ${ZDOTDIR}/.zsh/lib/zdharma/zinit/zinit.zsh
 
 # See:
@@ -27,10 +29,11 @@ for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-zinit ice wait'!0'; zinit light zsh-users/zsh-completions
-zinit ice wait'!0'; zinit light zsh-users/zsh-autosuggestions
-zinit ice wait'!0'; zinit light zsh-users/zsh-syntax-highlighting
-zinit ice wait'!0'; zinit light zsh-users/zsh-history-substring-search
+zinit ice silent wait:0; zinit light zsh-users/zsh-completions
+zinit ice silent wait:0 atload:_zsh_autosuggest_start
+zinit light zsh-users/zsh-autosuggestions
+zinit ice silent wait:0; zinit light zdharma/fast-syntax-highlighting
+zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
 
 # fpath=(${ZDOTDIR}/.zsh/lib/zsh-users/zsh-completions/src $fpath)
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
