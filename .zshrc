@@ -39,7 +39,7 @@ zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-history-substring-search/zsh-history-substring-search.zsh
-# source ${ZDOTDIR}/.zsh/lib/functions.zsh
+source ${ZDOTDIR}/.zsh/lib/functions.zsh
 
 HISTFILE=${ZDOTDIR}/.cache/zsh/zsh-history
 HISTSIZE=999999
