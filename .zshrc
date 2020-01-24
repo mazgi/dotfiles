@@ -35,6 +35,24 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice silent wait:0; zinit light zdharma/fast-syntax-highlighting
 zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
 
+zinit ice from"gh-r" as"program" mv"hub-*/bin/hub -> hub" atclone'./hub alias -s > zhook.zsh' atpull'%atclone'
+zinit light github/hub
+zinit ice silent as"completion" mv'hub.zsh_completion -> _hub' 
+zinit snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
+
+zinit ice from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv"
+zinit light direnv/direnv
+
+zinit ice from"gh-r" as"program" atclone'./starship init zsh > zhook.zsh' atpull'%atclone' src"zhook.zsh"
+zinit light starship/starship
+
+# hub: https://github.com/github/hub
+# command -v hub > /dev/null && eval "$(hub alias -s)"
+# direnv: https://github.com/direnv/direnv
+# command -v direnv > /dev/null && eval "$(direnv hook zsh)"
+# starship; https://github.com/starship/starship
+# command -v starship > /dev/null && eval "$(starship init zsh)"
+
 # fpath=(${ZDOTDIR}/.zsh/lib/zsh-users/zsh-completions/src $fpath)
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -96,13 +114,6 @@ if (( ${+GOPATH} )); then
     export PATH="${PATH}:${GOPATH}/bin"
   fi
 fi
-
-# hub: https://github.com/github/hub
-command -v hub > /dev/null && eval "$(hub alias -s)"
-# direnv: https://github.com/direnv/direnv
-command -v direnv > /dev/null && eval "$(direnv hook zsh)"
-# starship; https://github.com/starship/starship
-command -v starship > /dev/null && eval "$(starship init zsh)"
 
 if [[ -e ${ZDOTDIR}/.zshrc.local ]]; then
   . ${ZDOTDIR}/.zshrc.local
