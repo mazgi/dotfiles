@@ -1,6 +1,4 @@
-# See:
-# - http://zsh.sourceforge.net/Doc/Release/Options.html
-# - https://github.com/zplug/zplug
+# See http://zsh.sourceforge.net/Doc/Release/Zsh-Modules.html#The-zsh_002fzprof-Module
 if [[ ! -z $RUN_ZPROF ]]; then
   zmodload zsh/zprof
 fi
