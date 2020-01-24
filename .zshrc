@@ -7,8 +7,8 @@ fi
 
 export ZDOTDIR=${ZDOTDIR:-$HOME}
 
-# autoload -U compinit
-# compinit
+source ${ZDOTDIR}/.zsh/lib/zdharma/zinit/zinit.zsh
+
 # See:
 # - https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
 # - https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
@@ -27,8 +27,13 @@ for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
 done
 compinit -C
 
+zinit ice wait'!0'; zinit light zsh-users/zsh-completions
+zinit ice wait'!0'; zinit light zsh-users/zsh-autosuggestions
+zinit ice wait'!0'; zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait'!0'; zinit light zsh-users/zsh-history-substring-search
+
 # fpath=(${ZDOTDIR}/.zsh/lib/zsh-users/zsh-completions/src $fpath)
-# source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh 
+# source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-history-substring-search/zsh-history-substring-search.zsh
 # source ${ZDOTDIR}/.zsh/lib/functions.zsh
