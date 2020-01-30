@@ -5,6 +5,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "mazgi/betagarden"
 brew "bat"
+brew "coreutils"
 brew "ffmpeg"
 brew "fping"
 brew "fzf"
@@ -33,11 +34,11 @@ cask "1password-cli"
 cask "adobe-creative-cloud"
 cask "blender"
 cask "clip-studio-paint"
-cask "docker"
 cask "firefox"
 cask "font-source-code-pro"
 cask "font-source-code-pro-for-powerline"
 cask "google-chrome"
+cask "hyper"
 cask "jetbrains-toolbox"
 cask "mono-mdk"
 cask "ngrok"
@@ -55,6 +56,7 @@ cask "wacom-tablet"
 cask "zoomus"
 mas "Bluetooth MIDI Connect", id: 1074606480
 mas "GarageBand", id: 682658836
+mas "Keynote", id: 409183694
 mas "Kindle", id: 405399194
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Slack", id: 803453959
