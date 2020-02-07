@@ -9,6 +9,7 @@ export ZDOTDIR=${ZDOTDIR:-$HOME}
 # See https://github.com/zdharma/zinit#option-2---manual-installation
 source ${ZDOTDIR}/.zsh/lib/zdharma/zinit/zinit.zsh
 
+# Set up compinit
 # See:
 # - https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
 # - https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
@@ -26,12 +27,6 @@ for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
-
-zinit ice silent wait:0; zinit light zsh-users/zsh-completions
-zinit ice silent wait:0 atload:_zsh_autosuggest_start
-zinit light zsh-users/zsh-autosuggestions
-zinit ice silent wait:0; zinit light zdharma/fast-syntax-highlighting
-zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
 
 # direnv: https://github.com/direnv/direnv
 zinit ice from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv"
@@ -53,18 +48,12 @@ zinit snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
 zinit ice from"gh-r" as"program" atclone'./starship init zsh > zhook.zsh' atpull'%atclone' src"zhook.zsh"
 zinit light starship/starship
 
-# hub: https://github.com/github/hub
-# command -v hub > /dev/null && eval "$(hub alias -s)"
-# direnv: https://github.com/direnv/direnv
-# command -v direnv > /dev/null && eval "$(direnv hook zsh)"
-# starship; https://github.com/starship/starship
-# command -v starship > /dev/null && eval "$(starship init zsh)"
-
-# fpath=(${ZDOTDIR}/.zsh/lib/zsh-users/zsh-completions/src $fpath)
-# source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source ${ZDOTDIR}/.zsh/lib/zsh-users/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ${ZDOTDIR}/.zsh/lib/functions.zsh
+zinit ice silent wait:0; zinit light zsh-users/zsh-completions
+zinit ice silent wait:0 atload:_zsh_autosuggest_start
+zinit light zsh-users/zsh-autosuggestions
+zinit ice silent wait:0; zinit light zdharma/fast-syntax-highlighting
+zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
+zinit ice silent wait:0; zinit light mazgi/zsh-functions
 
 HISTFILE=${ZDOTDIR}/.cache/zsh/zsh-history
 HISTSIZE=999999
@@ -123,12 +112,11 @@ if (( ${+GOPATH} )); then
 fi
 
 if [[ -e ${ZDOTDIR}/.zshrc.local ]]; then
-  . ${ZDOTDIR}/.zshrc.local
+  source ${ZDOTDIR}/.zshrc.local
 fi
 
 if [[ ! -z $RUN_ZPROF ]]; then
   if command -v zprof > /dev/null; then
-    # zprof | head -40
     zprof
   fi
 fi
