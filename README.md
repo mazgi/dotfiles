@@ -1,9 +1,16 @@
 ## About
 
-This is a chain of provisioning scripts for setting up your macOS (and Linux).  
-But it's adjusted to my own use cases.
+This repository is the scripts and configuration files for the provision of my environment on macOS and Linux.
 
-I am glad if you got a good reference for your provisioning.
+That includes tools and settings as below.
+
+- `.zshrc`, and zsh plugins via [zinit](https://github.com/zdharma/zinit)
+- `.tmux.conf`, and tmux plugins via [tpm](https://github.com/tmux-plugins/tpm)
+- `.vimrc`, and vim plugins via [Vundle.vim](https://github.com/VundleVim/Vundle.vim)
+- (for macOS) `Brewfile` for [Homebrew](https://github.com/Homebrew/brew)
+- recipes like Makefile for setting up those files powered by [cargo-make](https://github.com/sagiegurari/cargo-make)
+
+The purpose of this repository is to set up my environment for me, Although I am glad if this repository as a useful example when you provision your environment.
 
 ## How to use
 
@@ -37,3 +44,15 @@ export CARGO_MAKE_VERSION="0.26.1" \
 ```shellsession
 bin/cargo-make make --makefile tasks/install.toml
 ```
+
+## How to
+
+```shellsession
+docker-compose up
+```
+
+```shellsession
+docker-compose run ws zsh -l
+```
+
+![Try with Docker Compose](docs/images/try-with-docker-compose.gif)

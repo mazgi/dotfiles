@@ -41,8 +41,10 @@ condition.env_set = ["GIT_BRANCH"]
 script_runner = "zsh"
 script = [
 '''
-cd "${HOME}/.dotfiles"
-git checkout -b ${GIT_BRANCH} origin/${GIT_BRANCH}
+if [[ ! -z ${GIT_BRANCH} ]]; then
+  cd "${HOME}/.dotfiles"
+  git checkout -b ${GIT_BRANCH} origin/${GIT_BRANCH}
+fi
 '''
 ]
 
