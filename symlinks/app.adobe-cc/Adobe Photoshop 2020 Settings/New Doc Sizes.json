@@ -1,0 +1,26 @@
+{
+    "sections": [
+        {
+            "section": "user",
+            "presets": [
+                {
+                    "name": "a4-portrait-cmyk-color-jp",
+                    "group": "user",
+                    "width": 210.0,
+                    "height": 297.0,
+                    "units": "millimetersUnit",
+                    "profile": "Japan Color 2001 Coated",
+                    "resolution": 300.0,
+                    "resolutionUnits": "inchesUnit",
+                    "depth": 8,
+                    "scale": 1.0,
+                    "mode": "CMYK",
+                    "fill": "white",
+                    "guides": [],
+                    "artboards": [],
+                    "icon": "print"
+                }
+            ]
+        }
+    ]
+}
