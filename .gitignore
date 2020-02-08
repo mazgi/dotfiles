@@ -1,2 +1,1 @@
-.zsh/completions/*
-!.zsh/completions/.gitkeep
+.env
