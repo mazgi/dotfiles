@@ -1,0 +1,205 @@
+extend = [{ path = ".install-common.toml" }]
+
+[config]
+skip_core_tasks = true
+min_version = "0.26.0"
+
+[tasks.setup-terminal-preferences.mac]
+dependencies = [
+]
+script = [
+# Set up Terminal.app
+'''
+/usr/libexec/PlistBuddy -c 'Set "Startup Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist
+/usr/libexec/PlistBuddy -c 'Set "Default Window Settings" "Pro"' ~/Library/Preferences/com.apple.Terminal.plist
+#/usr/libexec/PlistBuddy -c 'Add "Window Settings:Pro:Bell" bool false' ~/Library/Preferences/com.apple.Terminal.plist
+#/usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:Bell" false' ~/Library/Preferences/com.apple.Terminal.plist
+#/usr/libexec/PlistBuddy -c 'Add "Window Settings:Pro:VisualBellOnlyWhenMuted" bool false' ~/Library/Preferences/com.apple.Terminal.plist
+#/usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:VisualBellOnlyWhenMuted" false' ~/Library/Preferences/com.apple.Terminal.plist
+/usr/libexec/PlistBuddy -c 'Set "Window Settings:Pro:shellExitAction" 1' ~/Library/Preferences/com.apple.Terminal.plist
+''',
+# Set up Terminal.app - fonts
+'''
+export workdir=$(mktemp -d)
+/usr/libexec/PlistBuddy -x -c 'Print "Window Settings:Pro:Font"' ~/Library/Preferences/com.apple.Terminal.plist > ${workdir}/font.xml
+xmllint --xpath '/plist/data/text()' ${workdir}/font.xml | base64 --decode --output ${workdir}/font.plist
+/usr/libexec/PlistBuddy -c 'Set :$objects:2 SauceCodePowerline-Regular' ${workdir}/font.plist
+/usr/libexec/PlistBuddy -c "Import \"Window Settings:Pro:Font\" ${workdir}/font.plist" ~/Library/Preferences/com.apple.Terminal.plist
+rm -rf ${workdir}
+'''
+]
+
+[tasks.setup-energy-saver.mac]
+dependencies = [
+  "disable-sudo-timeout"
+]
+script = [
+# on AC power
+'''
+sudo pmset -b sleep 60
+sudo pmset -b displaysleep 60
+sudo pmset -b disksleep 60
+''',
+# on Power Adapter
+'''
+sudo pmset -c sleep 0
+sudo pmset -c displaysleep 0
+sudo pmset -b disksleep 0
+'''
+]
+
+[tasks.setup-language-and-region.mac]
+dependencies = [
+]
+script = [
+'''
+defaults write NSGlobalDomain AppleFirstWeekday -dict 'gregorian' 2
+defaults write NSGlobalDomain AppleLanguages -array 'en-JP' 'jp-JP'
+defaults write NSGlobalDomain AppleLocale -string 'en_JP'
+#defaults write NSGlobalDomain AppleMeasurementUnits -string 'Centimeters'
+#defaults write NSGlobalDomain AppleTemperatureUnit -string 'Celsius'
+'''
+]
+
+[tasks.setup-keyboard-preferences.mac]
+dependencies = [
+]
+# --------------------------------
+# Keyboard
+#   - 1452-597: Apple Wireless Keyboard
+#   - 1452-631: Apple Internal Keyboard / Trackpad
+#   - 1452-615: Magic Keyboard
+script = [
+'''
+for keyboard in '1452-597' '1452-631' '1452-615'
+do
+  /usr/libexec/PlistBuddy -c "Delete com.apple.keyboard.modifiermapping.${keyboard}-0" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+  /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0 array" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+  /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0:0:HIDKeyboardModifierMappingSrc integer 30064771129" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+  /usr/libexec/PlistBuddy -c "Add com.apple.keyboard.modifiermapping.${keyboard}-0:0:HIDKeyboardModifierMappingDst integer 30064771300" ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+done
+'''
+]
+
+[tasks.setup-trackpad-and-mouse-preferences.mac]
+dependencies = [
+]
+script = [
+# Enable clicking
+'''
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+''',
+# Enable three finger drag
+'''
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+''',
+# in macOS >= 10.12
+# ref: https://github.com/mathiasbynens/dotfiles/issues/793#issuecomment-344154171
+'''
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+''',
+# Set up mouse
+'''
+if [[ $(/usr/libexec/PlistBuddy -c 'Print "com.apple.mouse.tapBehavior"' ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist 2> /dev/null) ]]; then
+  /usr/libexec/PlistBuddy -c 'Set "com.apple.mouse.tapBehavior" 1' ~/Library/Preferences/ByHost/.GlobalPreferences.*.plist
+fi
+'''
+]
+
+[tasks.setup-hotcorners.mac]
+dependencies = [
+]
+# Possible values:
+#  0: no-op
+#  2: Mission Control (all windows)
+#  3: Show application windows
+#  4: Desktop
+#  5: Start screen saver
+#  6: Disable screen saver
+#  7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+script = [
+# Top-Left
+'''
+defaults write com.apple.dock wvous-tl-corner -int 6
+''',
+# Top-Right
+'''
+defaults write com.apple.dock wvous-tr-corner -int 6
+''',
+# Bottom-Left
+'''
+defaults write com.apple.dock wvous-bl-corner -int 5
+''',
+# Bottom-Right
+'''
+defaults write com.apple.dock wvous-br-corner -int 5
+'''
+]
+
+[tasks.setup-misc-preferences.mac]
+dependencies = [
+]
+script = [
+# Set up iTunes.app
+'''
+defaults write com.apple.iTunesHelper ignore-devices 1
+''',
+# Set up Avoid creating `.DS_Store` file on network strages.
+'''
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+''',
+# Set up Menu Bar
+'''
+defaults write com.apple.menuextra.clock 'DateFormat' 'EEE MMM d  H:mm'
+defaults write com.apple.menuextra.battery 'ShowPercent' 'NO'
+''',
+# Disable automatically hide
+'''
+defaults write com.apple.dock autohide -bool false
+''',
+# Remove all icons
+'''
+defaults write com.apple.dock persistent-apps -array
+''',
+# Icon size: 16 - 128
+'''
+defaults write com.apple.dock tilesize -int 16
+''',
+# Enable magnification
+'''
+defaults write com.apple.dock magnification -bool true
+''',
+# Mission Control
+'''
+defaults write com.apple.dock mru-spaces -bool false
+''',
+# Apply changes
+'''
+killall Dock
+'''
+]
+
+[tasks.install-homebrew.mac]
+dependencies = [
+]
+condition = { files_not_exist = ["/usr/local/bin/brew"] }
+script = [
+'''
+yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+'''
+]
+
+[tasks.install-platform-specfic-part.mac]
+dependencies = [
+  "setup-terminal-preferences",
+  "setup-energy-saver",
+  "setup-language-and-region",
+  "setup-keyboard-preferences",
+  "setup-trackpad-and-mouse-preferences",
+  "setup-hotcorners",
+  "setup-misc-preferences",
+  "install-homebrew"
+]

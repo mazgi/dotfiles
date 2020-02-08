@@ -1,4 +1,3 @@
-
 ## About
 
 This is a chain of provisioning scripts for setting up your macOS (and Linux).  
@@ -6,59 +5,35 @@ But it's adjusted to my own use cases.
 
 I am glad if you got a good reference for your provisioning.
 
-## How to use (macOS)
+## How to use
 
-1. Sign in iCloud on your macOS via GUI.
-2. Install the "git" command to your macOS.
+1. (macOS) Sign in iCloud on your macOS via GUI.
+2. (macOS) Install the "git" command to your macOS.
 
 ```shellsession
 xcode-select --install
 ```
 
-3. Execute a command on your terminal as follows:
+3. Download cargo-make
+
+Linux:
 
 ```shellsession
-curl -L --proto-redir -all,https 'https://raw.githubusercontent.com/mazgi/.dotfiles/master/setup/setup.sh' | bash
+export CARGO_MAKE_VERSION="0.26.1" \
+&& curl -sL https://github.com/sagiegurari/cargo-make/releases/download/${CARGO_MAKE_VERSION}/cargo-make-v${CARGO_MAKE_VERSION}-x86_64-unknown-linux-musl.zip \
+| busybox unzip -p - cargo-make-v${CARGO_MAKE_VERSION}-x86_64-unknown-linux-musl/cargo-make > bin/cargo-make && chmod a+x bin/cargo-make
 ```
 
-### After execution
-
-- Create the `~/.gitconfig.local` file
-
-## How to develop
-
-1. Fork this repository.
-
-2. Clone.
+macOS:
 
 ```shellsession
-$ git clone git@github.com:${YOUR_NAMESPACE}/.dotfiles.git ~/.dotfiles
-$ cd ~/.dotfiles
-$ git submodule update --init --recursive
+export CARGO_MAKE_VERSION="0.26.1" \
+&& curl -sL https://github.com/sagiegurari/cargo-make/releases/download/${CARGO_MAKE_VERSION}/cargo-make-v${CARGO_MAKE_VERSION}-x86_64-apple-darwin.zip \
+| bsdtar --strip-components 1 -C bin/ -xvf - cargo-make-v${CARGO_MAKE_VERSION}-x86_64-apple-darwin/cargo-make
 ```
 
-3. Create symlinks.
-
-First, go to your home directory.
+4. and run
 
 ```shellsession
-$ cd
+bin/cargo-make make --makefile tasks/install.toml
 ```
-
-**Use `zsh`** with `~/.zshrc`.
-
-```shellsession
-$ ln -s .dotfiles/zsh/.zshrc .
-$ chsh -s /bin/zsh
-Changing shell for YOUR_NAME.
-Password for YOUR_NAME: 
-```
-
-**Use `vim`** with `~/.vimrc` and `~/.vim` directory.
-
-```shellsession
-$ ln -s .dotfiles/vim/.vim* .
-$ vim
-```
-
-And run `:BundleInstall` on your vim.

@@ -1,0 +1,122 @@
+[config]
+skip_core_tasks = true
+min_version = "0.26.0"
+
+[env]
+GIT_REPO_URL = { script = ["git remote get-url origin"] }
+
+[tasks.prepare]
+cwd = "${CARGO_MAKE_CURRENT_TASK_INITIAL_MAKEFILE_DIRECTORY}/../"
+
+[tasks.create-directories]
+dependencies = [
+  "prepare"
+]
+script = [
+'''
+mkdir -p "${HOME}/Creations/"
+mkdir -p "${HOME}/.go/"
+'''
+]
+
+[tasks.clone-the-repo]
+dependencies = [
+  "prepare"
+]
+condition = { files_not_exist = ["${HOME}/.dotfiles/.git"] }
+script = [
+'''
+git clone ${GIT_REPO_URL} "${HOME}/.dotfiles"
+'''
+]
+
+[tasks.update-the-repo]
+dependencies = [
+  "prepare",
+  "clone-the-repo"
+]
+condition = { files_exist = ["${HOME}/.dotfiles/.git"] }
+script = [
+'''
+cd "${HOME}/.dotfiles"
+git pull --ff-only
+git submodule update --init --recursive
+'''
+]
+
+[tasks.create-default-symlinks-in-home]
+cwd = "${HOME}"
+dependencies = [
+  "clone-the-repo",
+  "update-the-repo"
+]
+condition = { files_exist = ["${HOME}/.dotfiles"] }
+script = [
+'''
+cd "${HOME}"
+for f in $(ls -1d .dotfiles/symlinks/home.default/.[!.]*)
+do
+  ln -fs --no-dereference $f $(basename $f)
+done
+'''
+]
+
+[tasks.create-default-symlinks-in-home-platform-specfic-part.mac]
+cwd = "${HOME}"
+dependencies = [
+  "clone-the-repo",
+  "update-the-repo",
+  "create-default-symlinks-in-home"
+]
+condition = { files_exist = ["${HOME}/.dotfiles"] }
+script = [
+'''
+cd "${HOME}"
+for f in $(ls -1d .dotfiles/symlinks/home.macos/.[!.]*)
+do
+  ln -fs --no-dereference $f $(basename $f)
+done
+'''
+]
+
+[tasks.create-app-symlinks]
+dependencies = [
+  "clone-the-repo",
+  "update-the-repo",
+  "create-app-symlinks-adobe-cc"
+]
+
+[tasks.create-app-symlinks-adobe-cc.mac]
+dependencies = [
+  "clone-the-repo",
+  "update-the-repo"
+]
+condition.files_exist = ["${HOME}/.dotfiles"]
+condition.files_not_exist = ["${HOME}/Library/Preferences/Adobe Photoshop 2020 Settings"]
+script = [
+'''
+mkdir -p "${HOME}/Library/Preferences/Adobe Photoshop 2020 Settings"
+cd "${HOME}/Library/Preferences/Adobe Photoshop 2020 Settings"
+ln -s "~/.dotfiles/symlinks/app.adobe-cc/Adobe Photoshop 2020 Settings/New Doc Sizes.json" .
+'''
+]
+
+[tasks.set-the-login-shell-to-zsh]
+dependencies = [
+  "disable-sudo-timeout"
+]
+script = [
+'''
+sudo chsh -s /bin/zsh $USER
+'''
+]
+
+[tasks.install-common-part]
+dependencies = [
+  "clone-the-repo",
+  "update-the-repo",
+  "create-default-symlinks-in-home",
+  "create-default-symlinks-in-home-platform-specfic-part",
+  "create-app-symlinks",
+  "set-the-login-shell-to-zsh"
+]

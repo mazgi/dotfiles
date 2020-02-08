@@ -1,0 +1,9 @@
+extend = [{ path = ".install-common.toml" }]
+
+[config]
+skip_core_tasks = true
+min_version = "0.26.0"
+
+[tasks.install-platform-specfic-part.linux]
+dependencies = [
+]
