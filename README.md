@@ -45,7 +45,7 @@ export CARGO_MAKE_VERSION="0.26.1" \
 bin/cargo-make make --makefile tasks/install.toml
 ```
 
-## How to
+## How to try it with Docker Compose
 
 ```shellsession
 docker-compose up
