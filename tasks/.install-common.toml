@@ -1,6 +1,7 @@
 [config]
 skip_core_tasks = true
 min_version = "0.26.0"
+script_runner = "zsh"
 
 [env]
 GIT_REPO_URL = { script = ["git remote get-url origin"] }
@@ -30,12 +31,28 @@ git clone ${GIT_REPO_URL} "${HOME}/.dotfiles"
 '''
 ]
 
+[tasks.switch-to-specific-branch]
+dependencies = [
+  "prepare",
+  "clone-the-repo"
+]
+condition.files_exist = ["${HOME}/.dotfiles/.git"]
+condition.env_set = ["GIT_BRANCH"]
+script_runner = "zsh"
+script = [
+'''
+cd "${HOME}/.dotfiles"
+git checkout -b ${GIT_BRANCH} origin/${GIT_BRANCH}
+'''
+]
+
 [tasks.update-the-repo]
 dependencies = [
   "prepare",
   "clone-the-repo"
 ]
 condition = { files_exist = ["${HOME}/.dotfiles/.git"] }
+script_runner = "zsh"
 script = [
 '''
 cd "${HOME}/.dotfiles"
@@ -57,6 +74,7 @@ dependencies = [
   "update-the-repo"
 ]
 condition = { files_exist = ["${HOME}/.dotfiles"] }
+script_runner = "zsh"
 script = [
 '''
 cd "${HOME}"
@@ -124,6 +142,7 @@ sudo chsh -s /bin/zsh $USER
 [tasks.install-common-part]
 dependencies = [
   "clone-the-repo",
+  "switch-to-specific-branch",
   "update-the-repo",
   "create-default-symlinks-in-home",
   "create-default-symlinks-in-home-platform-specfic-part",

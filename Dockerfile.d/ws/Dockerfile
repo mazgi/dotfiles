@@ -32,9 +32,6 @@ RUN apt-get update\
   && curl -sL https://github.com/sagiegurari/cargo-make/releases/download/${CARGO_MAKE_VERSION}/cargo-make-v${CARGO_MAKE_VERSION}-x86_64-unknown-linux-musl.zip \
   | busybox unzip -p - cargo-make-v${CARGO_MAKE_VERSION}-x86_64-unknown-linux-musl/cargo-make > /usr/local/bin/cargo-make\
   && chmod a+x /usr/local/bin/cargo-make\
-  # starship
-  && curl -sL https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz\
-  | tar xz -C /usr/local/bin/\
   # 
   # Register GitHub host keys
   && mkdir -p /etc/skel/.ssh\
@@ -50,4 +47,5 @@ RUN apt-get update\
   --disabled-password\
   --force-badname\
   ${USER}\
-  && usermod -aG sudo ${USER}
+  && usermod -aG sudo ${USER}\
+  && echo '%testuser ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/allow-all-to-testuser

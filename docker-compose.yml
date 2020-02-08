@@ -5,19 +5,21 @@ services:
       context: Dockerfile.d/ws
       args:
         USER: ${USER:-john.doe}
-        UID: ${UID:-0}
-        GID: ${GID:-0}
+        UID: ${UID:-12345}
+        GID: ${GID:-12345}
     working_dir: /workspace
     volumes:
       - .:/workspace
       - ${HOME}/.ssh/id_rsa:/home/${USER}/.ssh/id_rsa:ro
       - ws-home:/home
-    user: "${UID:-0}:${GID:-0}"
+    user: "${UID:-12345}:${GID:-12345}"
+    environment:
+      - GIT_BRANCH
     command:
       - bash
       - -c
       - |
-        cargo-make make --makefile tasks/install.toml
+        cargo-make make --env GIT_BRANCH=${GIT_BRANCH} --makefile tasks/install.toml
 volumes:
   ws-home:
     driver: local
