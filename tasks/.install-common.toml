@@ -1,7 +1,6 @@
 [config]
 skip_core_tasks = true
 min_version = "0.26.0"
-script_runner = "zsh"
 
 [env]
 GIT_REPO_URL = { script = ["git remote get-url origin"] }
@@ -80,7 +79,7 @@ script_runner = "zsh"
 script = [
 '''
 cd "${HOME}"
-for f in $(ls -1d .dotfiles/symlinks/home.default/.[!.]*)
+for f in $(ls -1d .dotfiles/symlinks/home.default/(.|[[:alnum:]])*)
 do
   if [[ 'Darwin' == $(uname -s) ]]; then
     ln -fsh $f $(basename $f)
@@ -99,10 +98,11 @@ dependencies = [
   "create-default-symlinks-in-home"
 ]
 condition = { files_exist = ["${HOME}/.dotfiles"] }
+script_runner = "zsh"
 script = [
 '''
 cd "${HOME}"
-for f in $(ls -1d .dotfiles/symlinks/home.macos/.[!.]*)
+for f in $(ls -1d .dotfiles/symlinks/home.macos/(.|[[:alnum:]])*)
 do
   ln -fsh $f $(basename $f)
 done
