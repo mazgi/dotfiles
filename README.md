@@ -56,3 +56,12 @@ docker-compose run ws zsh -l
 ```
 
 ![Try with Docker Compose](docs/images/try-with-docker-compose.gif)
+
+## Maintenance
+
+### macOS packages
+
+```shellsession
+brew bundle dump --global --force
+git diff symlinks/home.macos/.Brewfile
+```
