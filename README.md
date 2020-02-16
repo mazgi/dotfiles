@@ -41,8 +41,10 @@ export CARGO_MAKE_VERSION="0.26.1" \
 
 4. and run
 
+**NOTE:** If you didn't use `--disable-check-for-updates` option, it makes symlink for `.cache` directory into an unexpected path like `~/.cache/.cache` because `cargo-make` creates `~/.cache` directory for check for updates before runs the tasks.
+
 ```shellsession
-bin/cargo-make make --makefile tasks/install.toml
+bin/cargo-make make --disable-check-for-updates --makefile tasks/install.toml
 ```
 
 ## How to try it with Docker Compose
