@@ -34,6 +34,12 @@ compinit -C
 zinit ice from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv"
 zinit light direnv/direnv
 
+# fzf: https://github.com/junegunn/fzf
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf-bin
+zinit ice as"program" pick"bin/fzf-tmux"
+zinit light junegunn/fzf
+
 # ghq: https://github.com/x-motemen/ghq
 zinit ice from"gh-r" as"program" mv"ghq_*/ghq -> ghq" pick"ghq"
 zinit light x-motemen/ghq
