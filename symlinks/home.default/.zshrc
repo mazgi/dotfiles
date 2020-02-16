@@ -46,6 +46,10 @@ zinit light github/hub
 zinit ice silent as"completion" mv'hub.zsh_completion -> _hub' 
 zinit snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
 
+# https://github.com/mazgi/zsh-functions
+zinit ice from"gh-r" as"snippet"
+zinit light mazgi/zsh-functions
+
 # starship; https://github.com/starship/starship
 zinit ice from"gh-r" as"program" atclone'./starship init zsh > zhook.zsh' atpull'%atclone' src"zhook.zsh"
 zinit light starship/starship
@@ -55,7 +59,6 @@ zinit ice silent wait:0 atload:_zsh_autosuggest_start
 zinit light zsh-users/zsh-autosuggestions
 zinit ice silent wait:0; zinit light zdharma/fast-syntax-highlighting
 zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
-zinit ice silent wait:0; zinit light mazgi/zsh-functions
 
 HISTFILE=${ZDOTDIR}/.cache/zsh/zsh-history
 HISTSIZE=999999
