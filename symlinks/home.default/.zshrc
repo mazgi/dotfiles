@@ -57,13 +57,14 @@ zinit ice from"gh-r" as"snippet"
 zinit light mazgi/zsh-functions
 
 # starship; https://github.com/starship/starship
-zinit ice from"gh-r" as"program" atclone'./starship init zsh > zhook.zsh' atpull'%atclone' src"zhook.zsh"
-zinit light starship/starship
+# zinit ice from"gh-r" as"program" atclone'./starship init zsh > zhook.zsh' atpull'%atclone' src"zhook.zsh"
+# zinit light starship/starship
+eval "$(starship init zsh)"
 
 zinit ice silent wait:0; zinit light zsh-users/zsh-completions
 zinit ice silent wait:0 atload:_zsh_autosuggest_start
 zinit light zsh-users/zsh-autosuggestions
-zinit ice silent wait:0; zinit light zdharma/fast-syntax-highlighting
+zinit ice silent wait:0; zinit light zsh-users/zsh-syntax-highlighting
 zinit ice silent wait:0; zinit light zsh-users/zsh-history-substring-search
 
 HISTFILE=${ZDOTDIR}/.cache/zsh/zsh-history
