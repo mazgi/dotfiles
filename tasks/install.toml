@@ -12,6 +12,13 @@ sudo sh -c "echo 'Defaults timestamp_timeout=-1' > /etc/sudoers.d/disable_timest
 '''
 ]
 
+[tasks.install-vim-plugins]
+script = [
+'''
+vim -c 'BundleInstall' -c 'q' -c 'q'
+'''
+]
+
 [tasks.reset-sudo-timeout]
 script = [
 '''
@@ -24,5 +31,6 @@ dependencies = [
   "disable-sudo-timeout",
   "install-common-part",
   "install-platform-specfic-part",
+  "install-vim-plugins",
   "reset-sudo-timeout"
 ]
