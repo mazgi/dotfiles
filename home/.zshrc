@@ -3,10 +3,6 @@ if [[ ! -z $RUN_ZPROF ]]; then
   zmodload zsh/zprof
 fi
 
-export ZDOTDIR=${ZDOTDIR:-$HOME}
-export EDITOR=vim
-export GOPATH="${HOME}/.go"
-
 # `source` it above `compinit`
 # See https://github.com/zdharma/zinit#option-2---manual-installation
 source ${ZDOTDIR}/.zsh/lib/zdharma/zinit/zinit.zsh
@@ -30,35 +26,11 @@ for dump in ${ZDOTDIR}/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-# direnv: https://github.com/direnv/direnv
-zinit ice from"gh-r" as"program" mv"direnv* -> direnv" atclone'./direnv hook zsh > zhook.zsh' atpull'%atclone' pick"direnv"
-zinit light direnv/direnv
-
-# fzf: https://github.com/junegunn/fzf
-zinit ice from"gh-r" as"program"
-zinit light junegunn/fzf-bin
-zinit ice as"program" pick"bin/fzf-tmux"
-zinit light junegunn/fzf
-
-# ghq: https://github.com/x-motemen/ghq
-zinit ice from"gh-r" as"program" mv"ghq_*/ghq -> ghq" pick"ghq"
-zinit light x-motemen/ghq
-zinit ice silent as"completion"
-zinit snippet https://github.com/x-motemen/ghq/blob/master/misc/zsh/_ghq
-
-# hub: https://github.com/github/hub
-zinit ice from"gh-r" as"program" mv"hub-*/bin/hub -> hub" atclone'./hub alias -s > zhook.zsh' atpull'%atclone'
-zinit light github/hub
-zinit ice silent as"completion" mv'hub.zsh_completion -> _hub' 
-zinit snippet https://github.com/github/hub/raw/master/etc/hub.zsh_completion
-
 # https://github.com/mazgi/zsh-functions
 zinit ice from"gh-r" as"snippet"
 zinit light mazgi/zsh-functions
 
 # starship; https://github.com/starship/starship
-# zinit ice from"gh-r" as"program" atclone'./starship init zsh > zhook.zsh' atpull'%atclone' src"zhook.zsh"
-# zinit light starship/starship
 eval "$(starship init zsh)"
 
 zinit ice silent wait:0; zinit light zsh-users/zsh-completions
@@ -88,9 +60,9 @@ setopt magic_equal_subst
 # x#, x##, *sh~*.sh, ^*.ext
 setopt extended_glob
 # $ cd -[TAB]
-# 0 -- ~/.dotfiles/a/b/c
-# 1 -- ~/.dotfiles/a/b
-# 2 -- ~/.dotfiles/a
+# 0 -- ~/a/b/c
+# 1 -- ~/a/b
+# 2 -- ~/a
 setopt auto_pushd
 setopt pushd_ignore_dups
 
@@ -109,17 +81,6 @@ alias la='ls -a'
 alias -g G='| grep '
 alias -g M='| more '
 alias -g V='| vim -R -'
-
-# Append cargo binaries path to the command search path.
-if [[ -d ${HOME}/.cargo/bin ]]; then
-  export PATH="${PATH}:${HOME}/.cargo/bin"
-fi
-# Append go binaries path to the command search path.
-if (( ${+GOPATH} )); then
-  if [[ -d ${GOPATH}/bin ]]; then
-    export PATH="${PATH}:${GOPATH}/bin"
-  fi
-fi
 
 if [[ -e ${ZDOTDIR}/.zshrc.local ]]; then
   source ${ZDOTDIR}/.zshrc.local
