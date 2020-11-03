@@ -5,7 +5,7 @@ fi
 
 # `source` it above `compinit`
 # See https://github.com/zdharma/zinit#option-2---manual-installation
-source ${ZDOTDIR}/.zsh/lib/zdharma/zinit/zinit.zsh
+source ${ZDOTDIR}/.zinit/bin/zinit.zsh
 
 # Set up compinit
 # See:
