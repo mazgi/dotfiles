@@ -1,9 +1,0 @@
-[submodule "symlinks/home.default/.vim/bundle/Vundle.vim"]
-	path = symlinks/home.default/.vim/bundle/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim.git
-[submodule "symlinks/home.default/.tmux/plugins/tpm"]
-	path = symlinks/home.default/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "symlinks/home.default/.zsh/lib/zdharma/zinit"]
-	path = symlinks/home.default/.zsh/lib/zdharma/zinit
-	url = https://github.com/zdharma/zinit.git
