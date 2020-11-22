@@ -1,9 +1,18 @@
-[submodule "home/.tmux/plugins/tpm"]
-	path = home/.tmux/plugins/tpm
+[submodule "linux_x64/home/.tmux/plugins/tpm"]
+	path = linux_x64/home/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "home/.vim/bundle/Vundle.vim"]
-	path = home/.vim/bundle/Vundle.vim
+[submodule "linux_x64/home/.vim/bundle/Vundle.vim"]
+	path = linux_x64/home/.vim/bundle/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim
-[submodule "home/.zinit/bin"]
-	path = home/.zinit/bin
+[submodule "linux_x64/home/.zinit/bin"]
+	path = linux_x64/home/.zinit/bin
+	url = https://github.com/zdharma/zinit
+[submodule "macos_x64/home/.tmux/plugins/tpm"]
+	path = macos_x64/home/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "macos_x64/home/.vim/bundle/Vundle.vim"]
+	path = macos_x64/home/.vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim
+[submodule "macos_x64/home/.zinit/bin"]
+	path = macos_x64/home/.zinit/bin
 	url = https://github.com/zdharma/zinit
